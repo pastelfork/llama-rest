@@ -1,0 +1,1 @@
+module.exports = {"siteUrl": "https://defimoney-monitor.reflex.run", "generateRobotsTxt": true, "outDir": "_static"}
