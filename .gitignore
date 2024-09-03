@@ -2,7 +2,7 @@
 /src/defimoney_monitor/*.py[cod]
 /src/defimoney_monitor/.cursorignore
 /src/defimoney_monitor/.vscode/
-/src/defimoney_monitor/.web
+/src/.web
 /src/defimoney_monitor/__pycache__/
 /src/defimoney_monitor/assets/external/
 /defimoney_monitor/.venv
