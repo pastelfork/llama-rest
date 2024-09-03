@@ -59,6 +59,8 @@ class AppState(rx.State):
         query_state = await self.get_state(QueryState)
         query_state.account_queried = False
         query_state.current_address = ""
+        query_state.arbitrum_account_states = []
+        query_state.optimism_account_states = []
         account_state = await self.get_state(AccountState)
         account_state.account_bound = False
         account_state.bound_address = ""
