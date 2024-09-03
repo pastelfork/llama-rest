@@ -277,8 +277,8 @@ def navbar() -> rx.Component:
                     ~AppState.user_logged_in,
                     telegram_component(
                         botName="defimoney_monitor_bot",
-                        dataAuthUrl="https://defimoney-monitor.reflex.run/auth"
-                        # dataAuthUrl="https://nord.prawn-dinosaur.ts.net/auth"
+                        # dataAuthUrl="https://defimoney-monitor.reflex.run/auth"
+                        dataAuthUrl="https://server.prawn-dinosaur.ts.net/auth"
                         ),
                     rx.button(
                         rx.icon(tag="log-out"),

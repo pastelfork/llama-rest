@@ -27,101 +27,6 @@ import NextHead from "next/head"
 
 
 
-                function Fallback({ error, resetErrorBoundary }) {
-                    return (
-                        <div>
-  <p>
-  {`Ooops...Unknown Reflex error has occured:`}
-</p>
-  <p css={{"color": "red"}}>
-  {error.message}
-</p>
-  <p>
-  {`Please contact the support.`}
-</p>
-</div>
-                    );
-                }
-            
-
-export function Link_3cf6452552f8c1d4c00c7cd99073ec98 () {
-  const reflex___state____state = useContext(StateContexts.reflex___state____state)
-
-
-
-  return (
-    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/auth`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
-  <Fragment>
-  {
-    (() => {
-        switch (JSON.stringify(`Auth`)) {
-                case JSON.stringify(`Overview`):
-                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Table`):
-                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`About`):
-                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Profile`):
-                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Settings`):
-                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-            default:
-                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-        }
-    })()
-  }
-</Fragment>
-  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Auth`}
-</RadixThemesText>
-</RadixThemesFlex>
-</NextLink>
-</RadixThemesLink>
-  )
-}
-
-export function Iconbutton_65a261390a876831a86bb3a665e35ca3 () {
-  const { toggleColorMode } = useContext(ColorModeContext)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
-
-
-  return (
-    <RadixThemesIconButton css={{"padding": "6px", "opacity": "0.8", "scale": "0.95", "background": "transparent", "color": "inherit", "zIndex": "20", "&:hover": {"cursor": "pointer"}}} onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8}>
-  <Fragment_2e0e6a4a3aec4136eedf42fc142b7aae/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Fragment_63ee95c1470dfb16f8a2ceb9077f149f () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
-  <Fragment>
-  <img css={{"height": "1em"}} src={`/reflex_black.svg`}/>
-</Fragment>
-) : (
-  <Fragment>
-  <img css={{"height": "1em"}} src={`/reflex_white.svg`}/>
-</Fragment>
-)}
-</Fragment>
-  )
-}
-
 export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
@@ -140,41 +45,19 @@ export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
   )
 }
 
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
-
-export function Div_ac2a89ea84667d600a059f034bd91dfe () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-  return (
-    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
-  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
-</div>
-  )
-}
-
-export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
+export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
     <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <NextLink href={`/about`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
   {
     (() => {
-        switch (JSON.stringify(`Overview`)) {
+        switch (JSON.stringify(`About`)) {
                 case JSON.stringify(`Overview`):
                 return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
                 break;
@@ -198,51 +81,7 @@ export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
   }
 </Fragment>
   <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Overview`}
-</RadixThemesText>
-</RadixThemesFlex>
-</NextLink>
-</RadixThemesLink>
-  )
-}
-
-export function Link_2cbccb12f31a4cef4ab0d4dcebf49cbc () {
-  const reflex___state____state = useContext(StateContexts.reflex___state____state)
-
-
-
-  return (
-    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/table`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
-  <Fragment>
-  {
-    (() => {
-        switch (JSON.stringify(`Table`)) {
-                case JSON.stringify(`Overview`):
-                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Table`):
-                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`About`):
-                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Profile`):
-                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Settings`):
-                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-            default:
-                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-        }
-    })()
-  }
-</Fragment>
-  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Table`}
+  {`About`}
 </RadixThemesText>
 </RadixThemesFlex>
 </NextLink>
@@ -294,19 +133,19 @@ export function Link_331e4d896336963343df698ec4cef540 () {
   )
 }
 
-export function Link_94fdf907a841056b7cad7bd19aedc155 () {
+export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
   const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
     <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/about`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <NextLink href={`/`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
   {
     (() => {
-        switch (JSON.stringify(`About`)) {
+        switch (JSON.stringify(`Overview`)) {
                 case JSON.stringify(`Overview`):
                 return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
                 break;
@@ -330,7 +169,7 @@ export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   }
 </Fragment>
   <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`About`}
+  {`Overview`}
 </RadixThemesText>
 </RadixThemesFlex>
 </NextLink>
@@ -338,47 +177,23 @@ export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   )
 }
 
-export function Link_250af228bba1fcdd4929a34d36a111ff () {
-  const reflex___state____state = useContext(StateContexts.reflex___state____state)
+export function Fragment_63ee95c1470dfb16f8a2ceb9077f149f () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
 
 
 
   return (
-    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/settings`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+    <Fragment>
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
   <Fragment>
-  {
-    (() => {
-        switch (JSON.stringify(`Settings`)) {
-                case JSON.stringify(`Overview`):
-                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Table`):
-                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`About`):
-                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Profile`):
-                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Settings`):
-                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-            default:
-                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-        }
-    })()
-  }
+  <img css={{"height": "1em"}} src={`/reflex_black.svg`}/>
 </Fragment>
-  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Settings`}
-</RadixThemesText>
-</RadixThemesFlex>
-</NextLink>
-</RadixThemesLink>
+) : (
+  <Fragment>
+  <img css={{"height": "1em"}} src={`/reflex_white.svg`}/>
+</Fragment>
+)}
+</Fragment>
   )
 }
 
@@ -402,31 +217,89 @@ export function Fragment_2e0e6a4a3aec4136eedf42fc142b7aae () {
   )
 }
 
-export function Toaster_6e90e5e87a1cac8c96c683214079bef3 () {
+export function Link_3cf6452552f8c1d4c00c7cd99073ec98 () {
+  const reflex___state____state = useContext(StateContexts.reflex___state____state)
+
+
+
+  return (
+    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
+  <NextLink href={`/auth`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <Fragment>
+  {
+    (() => {
+        switch (JSON.stringify(`Auth`)) {
+                case JSON.stringify(`Overview`):
+                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Table`):
+                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`About`):
+                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Profile`):
+                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Settings`):
+                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+            default:
+                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+        }
+    })()
+  }
+</Fragment>
+  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
+  {`Auth`}
+</RadixThemesText>
+</RadixThemesFlex>
+</NextLink>
+</RadixThemesLink>
+  )
+}
+
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
+
+export function Div_ac2a89ea84667d600a059f034bd91dfe () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+  return (
+    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
+  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
+</div>
+  )
+}
+
+export function Fragment_9b2cc135edf4ecc0844a9fb996d68897 () {
   const { resolvedColorMode } = useContext(ColorModeContext)
 
 
-  refs['__toast'] = toast
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-  
-const toast_props = {"description": `Check if server is reachable at ${getBackendURL(env.EVENT).href}`, "closeButton": true, "duration": 120000, "id": "websocket-error"};
-const [userDismissed, setUserDismissed] = useState(false);
-useEffect(() => {
-    if (connectErrors.length >= 2) {
-        if (!userDismissed) {
-            toast.error(
-                `Cannot connect to server: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}.`,
-                {...toast_props, onDismiss: () => setUserDismissed(true)},
-            )
-        }
-    } else {
-        toast.dismiss("websocket-error");
-        setUserDismissed(false);  // after reconnection reset dismissed state
-    }
-}, [connectErrors]);
 
   return (
-    <Toaster closeButton={false} expand={true} position={`bottom-right`} richColors={true} theme={resolvedColorMode}/>
+    <Fragment>
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
+  <Fragment>
+  <img css={{"height": "1.5em"}} src={`/reflex_black.svg`}/>
+</Fragment>
+) : (
+  <Fragment>
+  <img css={{"height": "1.5em"}} src={`/reflex_white.svg`}/>
+</Fragment>
+)}
+</Fragment>
   )
 }
 
@@ -564,33 +437,160 @@ specific to a page, you can define it in the page file itself.
   )
 }
 
-        function ComponentMap_d38e29d2c702ae9f2a0cb8029e36eb87 () {
-            const { resolvedColorMode } = useContext(ColorModeContext)
-            return (
-                {"h1": ({node, children, ...props}) => <RadixThemesHeading as={`h1`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`6`} {...props}>  {children}</RadixThemesHeading>, "h2": ({node, children, ...props}) => <RadixThemesHeading as={`h2`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`5`} {...props}>  {children}</RadixThemesHeading>, "h3": ({node, children, ...props}) => <RadixThemesHeading as={`h3`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`4`} {...props}>  {children}</RadixThemesHeading>, "h4": ({node, children, ...props}) => <RadixThemesHeading as={`h4`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`3`} {...props}>  {children}</RadixThemesHeading>, "h5": ({node, children, ...props}) => <RadixThemesHeading as={`h5`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`2`} {...props}>  {children}</RadixThemesHeading>, "h6": ({node, children, ...props}) => <RadixThemesHeading as={`h6`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`1`} {...props}>  {children}</RadixThemesHeading>, "p": ({node, children, ...props}) => <RadixThemesText as={`p`} css={{"marginTop": "1em", "marginBottom": "1em"}} {...props}>  {children}</RadixThemesText>, "ul": ({node, children, ...props}) => <ul css={{"listStyleType": "disc", "marginTop": "1em", "marginBottom": "1em", "marginLeft": "1.5rem", "direction": "column"}}>  {children}</ul>, "ol": ({node, children, ...props}) => <ol css={{"listStyleType": "decimal", "marginTop": "1em", "marginBottom": "1em", "marginLeft": "1.5rem", "direction": "column"}}>  {children}</ol>, "li": ({node, children, ...props}) => <li css={{"marginTop": "0.5em", "marginBottom": "0.5em"}}>  {children}</li>, "a": ({node, children, ...props}) => <RadixThemesLink css={{"fontWeight": "bold", "textDecoration": "underline", "textDecorationColor": "var(--accent-10)", "&:hover": {"color": "var(--accent-8)"}}} {...props}>  {children}</RadixThemesLink>, "code": ({node, inline, className, children, ...props}) => {     const match = (className || '').match(/language-(?<lang>.*)/);     const language = match ? match[1] : '';     if (language) {     (async () => {       try {         const module = await import(`react-syntax-highlighter/dist/cjs/languages/prism/${language}`);         SyntaxHighlighter.registerLanguage(language, module.default);       } catch (error) {         console.error(`Error importing language module for ${language}:`, error);       }     })();   }     return inline ? (         <RadixThemesCode color={`gray`} {...props}>  {children}</RadixThemesCode>     ) : (         <SyntaxHighlighter css={{"marginTop": "1em", "marginBottom": "1em"}} customStyle={{"marginTop": "1em", "marginBottom": "1em"}} language={language} style={isTrue(((resolvedColorMode) === (`light`))) ? oneLight : oneDark} {...props} children={children}/>     );       }, "codeblock": ({node, children, ...props}) => <SyntaxHighlighter css={{"marginTop": "1em", "marginBottom": "1em"}} customStyle={{"marginTop": "1em", "marginBottom": "1em"}} language={`python`} style={isTrue(((resolvedColorMode) === (`light`))) ? oneLight : oneDark} {...props} children={children}/>}
-            )
-        }
-        
-
-export function Fragment_9b2cc135edf4ecc0844a9fb996d68897 () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
+export function Link_250af228bba1fcdd4929a34d36a111ff () {
+  const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
+    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
+  <NextLink href={`/settings`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/settings")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Settings")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
-  <img css={{"height": "1.5em"}} src={`/reflex_black.svg`}/>
+  {
+    (() => {
+        switch (JSON.stringify(`Settings`)) {
+                case JSON.stringify(`Overview`):
+                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Table`):
+                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`About`):
+                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Profile`):
+                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Settings`):
+                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+            default:
+                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+        }
+    })()
+  }
 </Fragment>
-) : (
-  <Fragment>
-  <img css={{"height": "1.5em"}} src={`/reflex_white.svg`}/>
-</Fragment>
-)}
-</Fragment>
+  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
+  {`Settings`}
+</RadixThemesText>
+</RadixThemesFlex>
+</NextLink>
+</RadixThemesLink>
   )
 }
+
+export function Iconbutton_65a261390a876831a86bb3a665e35ca3 () {
+  const { toggleColorMode } = useContext(ColorModeContext)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
+
+
+  return (
+    <RadixThemesIconButton css={{"padding": "6px", "opacity": "0.8", "scale": "0.95", "background": "transparent", "color": "inherit", "zIndex": "20", "&:hover": {"cursor": "pointer"}}} onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8}>
+  <Fragment_2e0e6a4a3aec4136eedf42fc142b7aae/>
+</RadixThemesIconButton>
+  )
+}
+
+export function Toaster_6e90e5e87a1cac8c96c683214079bef3 () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
+
+
+  refs['__toast'] = toast
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+  
+const toast_props = {"description": `Check if server is reachable at ${getBackendURL(env.EVENT).href}`, "closeButton": true, "duration": 120000, "id": "websocket-error"};
+const [userDismissed, setUserDismissed] = useState(false);
+useEffect(() => {
+    if (connectErrors.length >= 2) {
+        if (!userDismissed) {
+            toast.error(
+                `Cannot connect to server: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}.`,
+                {...toast_props, onDismiss: () => setUserDismissed(true)},
+            )
+        }
+    } else {
+        toast.dismiss("websocket-error");
+        setUserDismissed(false);  // after reconnection reset dismissed state
+    }
+}, [connectErrors]);
+
+  return (
+    <Toaster closeButton={false} expand={true} position={`bottom-right`} richColors={true} theme={resolvedColorMode}/>
+  )
+}
+
+export function Link_2cbccb12f31a4cef4ab0d4dcebf49cbc () {
+  const reflex___state____state = useContext(StateContexts.reflex___state____state)
+
+
+
+  return (
+    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
+  <NextLink href={`/table`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <Fragment>
+  {
+    (() => {
+        switch (JSON.stringify(`Table`)) {
+                case JSON.stringify(`Overview`):
+                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Table`):
+                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`About`):
+                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Profile`):
+                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Settings`):
+                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+            default:
+                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+        }
+    })()
+  }
+</Fragment>
+  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
+  {`Table`}
+</RadixThemesText>
+</RadixThemesFlex>
+</NextLink>
+</RadixThemesLink>
+  )
+}
+
+        function ComponentMap_d38e29d2c702ae9f2a0cb8029e36eb87 () {
+            const { resolvedColorMode } = useContext(ColorModeContext)
+            return (
+                {"h1": ({node, children, ...props}) => <RadixThemesHeading as={`h1`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`6`} {...props}>  {children}</RadixThemesHeading>, "h2": ({node, children, ...props}) => <RadixThemesHeading as={`h2`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`5`} {...props}>  {children}</RadixThemesHeading>, "h3": ({node, children, ...props}) => <RadixThemesHeading as={`h3`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`4`} {...props}>  {children}</RadixThemesHeading>, "h4": ({node, children, ...props}) => <RadixThemesHeading as={`h4`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`3`} {...props}>  {children}</RadixThemesHeading>, "h5": ({node, children, ...props}) => <RadixThemesHeading as={`h5`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`2`} {...props}>  {children}</RadixThemesHeading>, "h6": ({node, children, ...props}) => <RadixThemesHeading as={`h6`} css={{"marginTop": "0.5em", "marginBottom": "0.5em"}} size={`1`} {...props}>  {children}</RadixThemesHeading>, "p": ({node, children, ...props}) => <RadixThemesText as={`p`} css={{"marginTop": "1em", "marginBottom": "1em"}} {...props}>  {children}</RadixThemesText>, "ul": ({node, children, ...props}) => <ul css={{"listStyleType": "disc", "marginTop": "1em", "marginBottom": "1em", "marginLeft": "1.5rem", "direction": "column"}}>  {children}</ul>, "ol": ({node, children, ...props}) => <ol css={{"listStyleType": "decimal", "marginTop": "1em", "marginBottom": "1em", "marginLeft": "1.5rem", "direction": "column"}}>  {children}</ol>, "li": ({node, children, ...props}) => <li css={{"marginTop": "0.5em", "marginBottom": "0.5em"}}>  {children}</li>, "a": ({node, children, ...props}) => <RadixThemesLink css={{"fontWeight": "bold", "textDecoration": "underline", "textDecorationColor": "var(--accent-10)", "&:hover": {"color": "var(--accent-8)"}}} {...props}>  {children}</RadixThemesLink>, "code": ({node, inline, className, children, ...props}) => {     const match = (className || '').match(/language-(?<lang>.*)/);     const language = match ? match[1] : '';     if (language) {     (async () => {       try {         const module = await import(`react-syntax-highlighter/dist/cjs/languages/prism/${language}`);         SyntaxHighlighter.registerLanguage(language, module.default);       } catch (error) {         console.error(`Error importing language module for ${language}:`, error);       }     })();   }     return inline ? (         <RadixThemesCode color={`gray`} {...props}>  {children}</RadixThemesCode>     ) : (         <SyntaxHighlighter css={{"marginTop": "1em", "marginBottom": "1em"}} customStyle={{"marginTop": "1em", "marginBottom": "1em"}} language={language} style={isTrue(((resolvedColorMode) === (`light`))) ? oneLight : oneDark} children={children} {...props}/>     );       }, "codeblock": ({node, children, ...props}) => <SyntaxHighlighter css={{"marginTop": "1em", "marginBottom": "1em"}} customStyle={{"marginTop": "1em", "marginBottom": "1em"}} language={`python`} style={isTrue(((resolvedColorMode) === (`light`))) ? oneLight : oneDark} children={children} {...props}/>}
+            )
+        }
+        
+
+                function Fallback({ error, resetErrorBoundary }) {
+                    return (
+                        <div>
+  <p>
+  {`Ooops...Unknown Reflex error has occured:`}
+</p>
+  <p css={{"color": "red"}}>
+  {error.message}
+</p>
+  <p>
+  {`Please contact the support.`}
+</p>
+</div>
+                    );
+                }
+            
 
 export default function Component() {
   const [addEvents, connectErrors] = useContext(EventLoopContext);

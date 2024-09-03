@@ -17,7 +17,21 @@ import NextHead from "next/head"
 
 
 
-export function Theme_536cf2f5440537df46f28f3c176b40bc () {
+export function Textfield__slot_f0f2802c93e940f52eef8e4080c83030 () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_56af215a02b20c0d1ccfb35703320b05 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.setvar", {var_name:`search_value`,value:``})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesTextField.Slot css={{"justify": "end", "cursor": "pointer", "display": isTrue(reflex___state____state__defimoney_monitor___backend___table_state____table_state.search_value) ? `flex` : `none`}} onClick={on_click_56af215a02b20c0d1ccfb35703320b05}>
+  <LucideXIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesTextField.Slot>
+  )
+}
+
+export function Theme_fe2ed635f3af7c2bd1ce97e41cbac886 () {
   const reflex___state____state__defimoney_monitor___templates___template____theme_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___templates___template____theme_state)
 
 
@@ -118,7 +132,7 @@ export function Theme_536cf2f5440537df46f28f3c176b40bc () {
 </RadixThemesTable.ColumnHeaderCell>
 </RadixThemesTable.Row>
 </RadixThemesTable.Header>
-  <Table__body_836ab59e472e62a4875cf5d1164f6be3/>
+  <Table__body_493c2fa4d2d1e73934beca98b93b3f43/>
 </RadixThemesTable.Root>
   <Fragment>
   <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"marginTop": "1em", "width": "100%"}} direction={`row`} justify={`end`} gap={`5`}>
@@ -140,126 +154,20 @@ export function Theme_536cf2f5440537df46f28f3c176b40bc () {
   )
 }
 
-                function Fallback({ error, resetErrorBoundary }) {
-                    return (
-                        <div>
-  <p>
-  {`Ooops...Unknown Reflex error has occured:`}
-</p>
-  <p css={{"color": "red"}}>
-  {error.message}
-</p>
-  <p>
-  {`Please contact the support.`}
-</p>
-</div>
-                    );
-                }
-            
-
-export function Link_3cf6452552f8c1d4c00c7cd99073ec98 () {
-  const reflex___state____state = useContext(StateContexts.reflex___state____state)
-
-
-
-  return (
-    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/auth`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
-  <Fragment>
-  {
-    (() => {
-        switch (JSON.stringify(`Auth`)) {
-                case JSON.stringify(`Overview`):
-                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Table`):
-                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`About`):
-                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Profile`):
-                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Settings`):
-                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-            default:
-                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-        }
-    })()
-  }
-</Fragment>
-  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Auth`}
-</RadixThemesText>
-</RadixThemesFlex>
-</NextLink>
-</RadixThemesLink>
-  )
-}
-
-export function Iconbutton_65a261390a876831a86bb3a665e35ca3 () {
-  const { toggleColorMode } = useContext(ColorModeContext)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
-
-
-  return (
-    <RadixThemesIconButton css={{"padding": "6px", "opacity": "0.8", "scale": "0.95", "background": "transparent", "color": "inherit", "zIndex": "20", "&:hover": {"cursor": "pointer"}}} onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8}>
-  <Fragment_2e0e6a4a3aec4136eedf42fc142b7aae/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Iconbutton_89415060d7b08697ddda726a16aaf32a () {
+export function Debounceinput_bd00ec88da09d1cb0536f6edac28c86a () {
   const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  const on_click_38e2a3799e6d27831343dd41ef88d980 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.last_page", {})], args, {}), [addEvents, Event])
+  const on_change_c442124b89396244aebff65ee7522cac = useCallback((_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.set_search_value", {value:_e0.target.value})], [_e0], {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? 0.6 : 1}} onClick={on_click_38e2a3799e6d27831343dd41ef88d980} variant={`soft`}>
-  <LucideChevronsRightIcon css={{"color": "var(--current-color)"}} size={18}/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Fragment_63ee95c1470dfb16f8a2ceb9077f149f () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
-  <Fragment>
-  <img css={{"height": "1em"}} src={`/reflex_black.svg`}/>
-</Fragment>
-) : (
-  <Fragment>
-  <img css={{"height": "1em"}} src={`/reflex_white.svg`}/>
-</Fragment>
-)}
-</Fragment>
-  )
-}
-
-export function Button_53c219a64c53a6328a118a6e5f14d16d () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_74b0f353be8e866b052301692b0b2d73 = useCallback((...args) => addEvents([Event("_download", {url:`/items.csv`,filename:`items.csv`})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesButton css={{"@media screen and (min-width: 0)": {"display": "none"}, "@media screen and (min-width: 30em)": {"display": "none"}, "@media screen and (min-width: 48em)": {"display": "none"}, "@media screen and (min-width: 62em)": {"display": "flex"}}} onClick={on_click_74b0f353be8e866b052301692b0b2d73} size={`3`} variant={`surface`}>
-  <LucideArrowDownToLineIcon css={{"color": "var(--current-color)"}} size={20}/>
-  {`Export`}
-</RadixThemesButton>
+    <DebounceInput color={`gray`} css={{"@media screen and (min-width: 0)": {"maxWidth": "150px"}, "@media screen and (min-width: 30em)": {"maxWidth": "150px"}, "@media screen and (min-width: 48em)": {"maxWidth": "200px"}, "@media screen and (min-width: 62em)": {"maxWidth": "250px"}, "width": "100%"}} debounceTimeout={300} element={RadixThemesTextField.Root} onChange={on_change_c442124b89396244aebff65ee7522cac} placeholder={`Search here...`} size={`3`} value={reflex___state____state__defimoney_monitor___backend___table_state____table_state.search_value} variant={`surface`}>
+  <RadixThemesTextField.Slot>
+  <LucideSearchIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesTextField.Slot>
+  <Textfield__slot_f0f2802c93e940f52eef8e4080c83030/>
+</DebounceInput>
   )
 }
 
@@ -281,41 +189,47 @@ export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
   )
 }
 
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
-
-export function Div_ac2a89ea84667d600a059f034bd91dfe () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
+export function Text_c2acd8421c7c831cce4c73d18f9ff888 () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
 
 
 
   return (
-    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
-  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
-</div>
+    <RadixThemesText as={`p`} css={{"justify": "end"}}>
+  {`Page `}
+  <Code_92375d40a4a1e754649e3bc5886b5e20/>
+  {` of ${reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages}`}
+</RadixThemesText>
   )
 }
 
-export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
+export function Iconbutton_7e23b77d93d4395d502e7d2622726271 () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_e7d4ec5232440c4da0e43cd4e5ca70fb = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.first_page", {})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? 0.6 : 1}} onClick={on_click_e7d4ec5232440c4da0e43cd4e5ca70fb} variant={`soft`}>
+  <LucideChevronsLeftIcon css={{"color": "var(--current-color)"}} size={18}/>
+</RadixThemesIconButton>
+  )
+}
+
+export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
     <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <NextLink href={`/about`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
   {
     (() => {
-        switch (JSON.stringify(`Overview`)) {
+        switch (JSON.stringify(`About`)) {
                 case JSON.stringify(`Overview`):
                 return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
                 break;
@@ -339,7 +253,7 @@ export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
   }
 </Fragment>
   <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Overview`}
+  {`About`}
 </RadixThemesText>
 </RadixThemesFlex>
 </NextLink>
@@ -347,7 +261,7 @@ export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
   )
 }
 
-export function Table__body_836ab59e472e62a4875cf5d1164f6be3 () {
+export function Table__body_493c2fa4d2d1e73934beca98b93b3f43 () {
   const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
 
 
@@ -405,61 +319,15 @@ export function Table__body_836ab59e472e62a4875cf5d1164f6be3 () {
   )
 }
 
-export function Iconbutton_7e23b77d93d4395d502e7d2622726271 () {
+export function Code_92375d40a4a1e754649e3bc5886b5e20 () {
   const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_e7d4ec5232440c4da0e43cd4e5ca70fb = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.first_page", {})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? 0.6 : 1}} onClick={on_click_e7d4ec5232440c4da0e43cd4e5ca70fb} variant={`soft`}>
-  <LucideChevronsLeftIcon css={{"color": "var(--current-color)"}} size={18}/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Link_2cbccb12f31a4cef4ab0d4dcebf49cbc () {
-  const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
-    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/table`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
-  <Fragment>
-  {
-    (() => {
-        switch (JSON.stringify(`Table`)) {
-                case JSON.stringify(`Overview`):
-                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Table`):
-                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`About`):
-                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Profile`):
-                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-                case JSON.stringify(`Settings`):
-                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-            default:
-                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
-                break;
-        }
-    })()
-  }
-</Fragment>
-  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`Table`}
-</RadixThemesText>
-</RadixThemesFlex>
-</NextLink>
-</RadixThemesLink>
+    <RadixThemesCode>
+  {reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number}
+</RadixThemesCode>
   )
 }
 
@@ -507,47 +375,19 @@ export function Link_331e4d896336963343df698ec4cef540 () {
   )
 }
 
-export function Iconbutton_0e8e0af2860cb8acfa267661c90bf8f9 () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_a913c11afdab9ab6e7decf5f8e3a1739 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.prev_page", {})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? 0.6 : 1}} onClick={on_click_a913c11afdab9ab6e7decf5f8e3a1739} variant={`soft`}>
-  <LucideChevronLeftIcon css={{"color": "var(--current-color)"}} size={18}/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Iconbutton_5986499117ea4ab3e883ea195fc51828 () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_0c65b7f0fd23c9c3a0e0b20de3509eea = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.next_page", {})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? 0.6 : 1}} onClick={on_click_0c65b7f0fd23c9c3a0e0b20de3509eea} variant={`soft`}>
-  <LucideChevronRightIcon css={{"color": "var(--current-color)"}} size={18}/>
-</RadixThemesIconButton>
-  )
-}
-
-export function Link_94fdf907a841056b7cad7bd19aedc155 () {
+export function Link_a19a8e5dcb03112480586ca9e7c1c113 () {
   const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
     <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
-  <NextLink href={`/about`} passHref={true}>
-  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/about")) || ((((reflex___state____state.router.page.path) === ("/")) && ("About")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <NextLink href={`/`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Overview")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
   {
     (() => {
-        switch (JSON.stringify(`About`)) {
+        switch (JSON.stringify(`Overview`)) {
                 case JSON.stringify(`Overview`):
                 return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
                 break;
@@ -571,7 +411,7 @@ export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   }
 </Fragment>
   <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
-  {`About`}
+  {`Overview`}
 </RadixThemesText>
 </RadixThemesFlex>
 </NextLink>
@@ -579,34 +419,144 @@ export function Link_94fdf907a841056b7cad7bd19aedc155 () {
   )
 }
 
-export function Text_c2acd8421c7c831cce4c73d18f9ff888 () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+export function Button_53c219a64c53a6328a118a6e5f14d16d () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
 
+  const on_click_74b0f353be8e866b052301692b0b2d73 = useCallback((...args) => addEvents([Event("_download", {url:`/items.csv`,filename:`items.csv`})], args, {}), [addEvents, Event])
 
 
   return (
-    <RadixThemesText as={`p`} css={{"justify": "end"}}>
-  {`Page `}
-  <Code_92375d40a4a1e754649e3bc5886b5e20/>
-  {` of ${reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages}`}
-</RadixThemesText>
+    <RadixThemesButton css={{"@media screen and (min-width: 0)": {"display": "none"}, "@media screen and (min-width: 30em)": {"display": "none"}, "@media screen and (min-width: 48em)": {"display": "none"}, "@media screen and (min-width: 62em)": {"display": "flex"}}} onClick={on_click_74b0f353be8e866b052301692b0b2d73} size={`3`} variant={`surface`}>
+  <LucideArrowDownToLineIcon css={{"color": "var(--current-color)"}} size={20}/>
+  {`Export`}
+</RadixThemesButton>
   )
 }
 
-export function Debounceinput_bd00ec88da09d1cb0536f6edac28c86a () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
+export function Fragment_63ee95c1470dfb16f8a2ceb9077f149f () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
 
-  const on_change_c442124b89396244aebff65ee7522cac = useCallback((_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.set_search_value", {value:_e0.target.value})], [_e0], {}), [addEvents, Event])
 
 
   return (
-    <DebounceInput color={`gray`} css={{"@media screen and (min-width: 0)": {"maxWidth": "150px"}, "@media screen and (min-width: 30em)": {"maxWidth": "150px"}, "@media screen and (min-width: 48em)": {"maxWidth": "200px"}, "@media screen and (min-width: 62em)": {"maxWidth": "250px"}, "width": "100%"}} debounceTimeout={300} element={RadixThemesTextField.Root} onChange={on_change_c442124b89396244aebff65ee7522cac} placeholder={`Search here...`} size={`3`} value={reflex___state____state__defimoney_monitor___backend___table_state____table_state.search_value} variant={`surface`}>
-  <RadixThemesTextField.Slot>
-  <LucideSearchIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesTextField.Slot>
-  <Textfield__slot_f0f2802c93e940f52eef8e4080c83030/>
-</DebounceInput>
+    <Fragment>
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
+  <Fragment>
+  <img css={{"height": "1em"}} src={`/reflex_black.svg`}/>
+</Fragment>
+) : (
+  <Fragment>
+  <img css={{"height": "1em"}} src={`/reflex_white.svg`}/>
+</Fragment>
+)}
+</Fragment>
+  )
+}
+
+export function Fragment_2e0e6a4a3aec4136eedf42fc142b7aae () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
+
+
+
+  return (
+    <Fragment>
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
+  <Fragment>
+  <LucideSunIcon css={{"color": "var(--current-color)"}}/>
+</Fragment>
+) : (
+  <Fragment>
+  <LucideMoonIcon css={{"color": "var(--current-color)"}}/>
+</Fragment>
+)}
+</Fragment>
+  )
+}
+
+export function Fragment_ac68ce04284ad36df5eebc04e16beaaa () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+  return (
+    <Fragment>
+  {isTrue(reflex___state____state__defimoney_monitor___backend___table_state____table_state.sort_reverse) ? (
+  <Fragment>
+  <LucideArrowDownZAIcon css={{"strokeWidth": 1.5, "cursor": "pointer", "flexShrink": "0", "color": "var(--current-color)"}} onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.toggle_sort", {})], args, {})} size={28}/>
+</Fragment>
+) : (
+  <Fragment>
+  <LucideArrowDownAZIcon css={{"strokeWidth": 1.5, "cursor": "pointer", "flexShrink": "0", "color": "var(--current-color)"}} onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.toggle_sort", {})], args, {})} size={28}/>
+</Fragment>
+)}
+</Fragment>
+  )
+}
+
+export function Link_3cf6452552f8c1d4c00c7cd99073ec98 () {
+  const reflex___state____state = useContext(StateContexts.reflex___state____state)
+
+
+
+  return (
+    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
+  <NextLink href={`/auth`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/auth")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Auth")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
+  <Fragment>
+  {
+    (() => {
+        switch (JSON.stringify(`Auth`)) {
+                case JSON.stringify(`Overview`):
+                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Table`):
+                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`About`):
+                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Profile`):
+                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Settings`):
+                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+            default:
+                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+        }
+    })()
+  }
+</Fragment>
+  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
+  {`Auth`}
+</RadixThemesText>
+</RadixThemesFlex>
+</NextLink>
+</RadixThemesLink>
+  )
+}
+
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
+
+export function Div_ac2a89ea84667d600a059f034bd91dfe () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+  return (
+    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
+  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
+</div>
   )
 }
 
@@ -654,26 +604,6 @@ export function Link_250af228bba1fcdd4929a34d36a111ff () {
   )
 }
 
-export function Fragment_2e0e6a4a3aec4136eedf42fc142b7aae () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
-  <Fragment>
-  <LucideSunIcon css={{"color": "var(--current-color)"}}/>
-</Fragment>
-) : (
-  <Fragment>
-  <LucideMoonIcon css={{"color": "var(--current-color)"}}/>
-</Fragment>
-)}
-</Fragment>
-  )
-}
-
 export function Select__root_db80cacbaeedfcc5216b9259811acec5 () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
@@ -701,6 +631,34 @@ export function Select__root_db80cacbaeedfcc5216b9259811acec5 () {
 </RadixThemesSelect.Group>
 </RadixThemesSelect.Content>
 </RadixThemesSelect.Root>
+  )
+}
+
+export function Iconbutton_65a261390a876831a86bb3a665e35ca3 () {
+  const { toggleColorMode } = useContext(ColorModeContext)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
+
+
+  return (
+    <RadixThemesIconButton css={{"padding": "6px", "opacity": "0.8", "scale": "0.95", "background": "transparent", "color": "inherit", "zIndex": "20", "&:hover": {"cursor": "pointer"}}} onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8}>
+  <Fragment_2e0e6a4a3aec4136eedf42fc142b7aae/>
+</RadixThemesIconButton>
+  )
+}
+
+export function Iconbutton_0e8e0af2860cb8acfa267661c90bf8f9 () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_a913c11afdab9ab6e7decf5f8e3a1739 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.prev_page", {})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (1))) ? 0.6 : 1}} onClick={on_click_a913c11afdab9ab6e7decf5f8e3a1739} variant={`soft`}>
+  <LucideChevronLeftIcon css={{"color": "var(--current-color)"}} size={18}/>
+</RadixThemesIconButton>
   )
 }
 
@@ -732,50 +690,47 @@ useEffect(() => {
   )
 }
 
-export function Fragment_ac68ce04284ad36df5eebc04e16beaaa () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
+export function Link_2cbccb12f31a4cef4ab0d4dcebf49cbc () {
+  const reflex___state____state = useContext(StateContexts.reflex___state____state)
 
 
 
   return (
-    <Fragment>
-  {isTrue(reflex___state____state__defimoney_monitor___backend___table_state____table_state.sort_reverse) ? (
+    <RadixThemesLink asChild={true} css={{"width": "100%", "&:hover": {"color": "var(--accent-8)"}}} underline={`none`}>
+  <NextLink href={`/table`} passHref={true}>
+  <RadixThemesFlex align={`center`} className={`rx-Stack`} css={{"&:hover": {"backgroundColor": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-3)` : `var(--gray-3)`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "opacity": "1"}, "opacity": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `1` : `0.95`, "color": isTrue((((reflex___state____state.router.page.path) === ("/table")) || ((((reflex___state____state.router.page.path) === ("/")) && ("Table")) === ("Overview")))) ? `var(--accent-10)` : `var(--gray-11)`, "borderRadius": "var(--radius-2)", "width": "100%", "padding": "0.35em"}} direction={`row`} gap={`2`}>
   <Fragment>
-  <LucideArrowDownZAIcon css={{"strokeWidth": 1.5, "cursor": "pointer", "flexShrink": "0", "color": "var(--current-color)"}} onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.toggle_sort", {})], args, {})} size={28}/>
+  {
+    (() => {
+        switch (JSON.stringify(`Table`)) {
+                case JSON.stringify(`Overview`):
+                return <LucideHomeIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Table`):
+                return <LucideTable2Icon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`About`):
+                return <LucideBookOpenIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Profile`):
+                return <LucideUserIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+                case JSON.stringify(`Settings`):
+                return <LucideSettingsIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+            default:
+                return <LucideLayoutDashboardIcon css={{"color": "var(--current-color)"}} size={18}/>;
+                break;
+        }
+    })()
+  }
 </Fragment>
-) : (
-  <Fragment>
-  <LucideArrowDownAZIcon css={{"strokeWidth": 1.5, "cursor": "pointer", "flexShrink": "0", "color": "var(--current-color)"}} onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.toggle_sort", {})], args, {})} size={28}/>
-</Fragment>
-)}
-</Fragment>
-  )
-}
-
-export function Textfield__slot_f0f2802c93e940f52eef8e4080c83030 () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_56af215a02b20c0d1ccfb35703320b05 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.setvar", {var_name:`search_value`,value:``})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesTextField.Slot css={{"justify": "end", "cursor": "pointer", "display": isTrue(reflex___state____state__defimoney_monitor___backend___table_state____table_state.search_value) ? `flex` : `none`}} onClick={on_click_56af215a02b20c0d1ccfb35703320b05}>
-  <LucideXIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesTextField.Slot>
-  )
-}
-
-export function Code_92375d40a4a1e754649e3bc5886b5e20 () {
-  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
-
-
-
-  return (
-    <RadixThemesCode>
-  {reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number}
-</RadixThemesCode>
+  <RadixThemesText as={`p`} size={`3`} weight={`regular`}>
+  {`Table`}
+</RadixThemesText>
+</RadixThemesFlex>
+</NextLink>
+</RadixThemesLink>
   )
 }
 
@@ -799,6 +754,51 @@ export function Fragment_9b2cc135edf4ecc0844a9fb996d68897 () {
   )
 }
 
+                function Fallback({ error, resetErrorBoundary }) {
+                    return (
+                        <div>
+  <p>
+  {`Ooops...Unknown Reflex error has occured:`}
+</p>
+  <p css={{"color": "red"}}>
+  {error.message}
+</p>
+  <p>
+  {`Please contact the support.`}
+</p>
+</div>
+                    );
+                }
+            
+
+export function Iconbutton_89415060d7b08697ddda726a16aaf32a () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_38e2a3799e6d27831343dd41ef88d980 = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.last_page", {})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? 0.6 : 1}} onClick={on_click_38e2a3799e6d27831343dd41ef88d980} variant={`soft`}>
+  <LucideChevronsRightIcon css={{"color": "var(--current-color)"}} size={18}/>
+</RadixThemesIconButton>
+  )
+}
+
+export function Iconbutton_5986499117ea4ab3e883ea195fc51828 () {
+  const reflex___state____state__defimoney_monitor___backend___table_state____table_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___backend___table_state____table_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_0c65b7f0fd23c9c3a0e0b20de3509eea = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___backend___table_state____table_state.next_page", {})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesIconButton color={isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? `gray` : `accent`} css={{"padding": "6px", "opacity": isTrue(((reflex___state____state__defimoney_monitor___backend___table_state____table_state.page_number) === (reflex___state____state__defimoney_monitor___backend___table_state____table_state.total_pages))) ? 0.6 : 1}} onClick={on_click_0c65b7f0fd23c9c3a0e0b20de3509eea} variant={`soft`}>
+  <LucideChevronRightIcon css={{"color": "var(--current-color)"}} size={18}/>
+</RadixThemesIconButton>
+  )
+}
+
 export default function Component() {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
   
@@ -817,7 +817,7 @@ export default function Component() {
   <Div_ac2a89ea84667d600a059f034bd91dfe/>
   <Toaster_6e90e5e87a1cac8c96c683214079bef3/>
 </Fragment>
-  <Theme_536cf2f5440537df46f28f3c176b40bc/>
+  <Theme_fe2ed635f3af7c2bd1ce97e41cbac886/>
   <NextHead>
   <title>
   {`Table`}
