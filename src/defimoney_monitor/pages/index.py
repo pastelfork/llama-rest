@@ -326,7 +326,10 @@ def navbar() -> rx.Component:
             rx.flex(
                 rx.image(src="/llama_rest_logo.jpg", width="6em"),
                 # rx.heading("Defi.Money Monitor", font_size="1em", color_scheme="bronze"),
-                rx.image(src="/Defi.Money.Logo.Sand.png", width="10em"),
+                rx.color_mode_cond(
+                    light=rx.image(src="/Defi.Money.Logo.Black.png", width="10em"),
+                    dark=rx.image(src="/Defi.Money.Logo.Sand.png", width="10em"),
+                ),
                 spacing="7",
                 align="center",
                 
