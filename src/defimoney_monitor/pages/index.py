@@ -360,7 +360,7 @@ def navbar() -> rx.Component:
                         # botName="llama_rest_dev_bot", # uncomment for local development
                         # 
                         # dataAuthUrl="https://defimoney-monitor.reflex.run/auth" # uncomment for reflex deployment
-                        dataAuthUrl="https://server.prawn-dinosaur.ts.net/auth" # uncomment for public deployment
+                        dataAuthUrl="https://llama.rest/auth" # uncomment for public deployment
                         # dataAuthUrl="https://nord.prawn-dinosaur.ts.net/auth", # uncomment for local development
                         ),
                     # logout button
