@@ -21,7 +21,7 @@ db = mongodb_client["defimoney_monitor_db"]
 users = db["users"]
 
 async def process_prices_updates(prices: dict):
-    console.log(f"process_prices_updates event loop: {asyncio.get_running_loop()}", log_locals=True)
+    # console.log(f"process_prices_updates event loop: {asyncio.get_running_loop()}", log_locals=True)
 
     async def process_price(market_address, price):
         # Find users with threshold price higher than current price, and this is the first time price has crossed the threshold (since last cross)
@@ -33,7 +33,6 @@ async def process_prices_updates(prices: dict):
         )
 
         down_results = list(down_results)
-        console.log(f'\ndown_results: {down_results}', log_locals=True)
         if down_results:
             for result in down_results:
                 market_name = result['notification_configs'][market_address]['market_name']
@@ -54,7 +53,6 @@ async def process_prices_updates(prices: dict):
             }
         )
         up_results = list(up_results)
-        console.log(f'\nup_results: {up_results}', log_locals=True)
         if up_results:
             for result in up_results:
                 print(f'\n[bold green]{result}[/bold green]')
