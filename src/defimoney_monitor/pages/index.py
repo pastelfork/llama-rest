@@ -404,7 +404,7 @@ def navbar() -> rx.Component:
 #         align="center",
 #     )
 
-@rx.page(route="/", title="Overview", on_load=AppState.load_account)
+@rx.page(route="/", title="llama.rest", on_load=AppState.load_account)
 def index() -> rx.Component:
     """The overview page.
 
