@@ -17,39 +17,35 @@ import NextHead from "next/head"
 
 
 
-export function Fragment_bc1e24b4c02b802e838772931bb95b5c () {
-  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state)
-  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state)
+                function Fallback({ error, resetErrorBoundary }) {
+                    return (
+                        <div>
+  <p>
+  {`Ooops...Unknown Reflex error has occured:`}
+</p>
+  <p css={{"color": "red"}}>
+  {error.message}
+</p>
+  <p>
+  {`Please contact the support.`}
+</p>
+</div>
+                    );
+                }
+            
+
+export function Fragment_b55f21ee14dc9741041d03ae3bbb7d1f () {
   const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
 
   return (
     <Fragment>
-  {isTrue(!reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state.account_bound) ? (
-  <Fragment>
-  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.account_queried) ? (
-  <Fragment>
   {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
   <Fragment>
-  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____account_state.handle_bind_address", {})], args, {})}>
-  {`Get notifications for this address`}
-</RadixThemesButton>
-</Fragment>
-) : (
-  <Fragment>
-  <RadixThemesTooltip content={`You need to be logged in to receive notification.`}>
-  <RadixThemesButton disabled={true}>
-  {`Get notifications for this address`}
-</RadixThemesButton>
-</RadixThemesTooltip>
-</Fragment>
-)}
-</Fragment>
-) : (
-  <Fragment/>
-)}
+  <RadixThemesHeading size={`5`}>
+  {`Welcome, ${reflex___state____state__defimoney_monitor___pages___index____app_state.current_user_first_name}`}
+</RadixThemesHeading>
 </Fragment>
 ) : (
   <Fragment/>
@@ -58,27 +54,21 @@ export function Fragment_bc1e24b4c02b802e838772931bb95b5c () {
   )
 }
 
-export function Fragment_63dcd1e904b67df0929861532875d439 () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
+export function Button_c234b7fa9cc5c0783a54d9767fa13370 () {
+  const { toggleColorMode } = useContext(ColorModeContext)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
 
+  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
 
 
   return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
-  <Fragment>
-  <img css={{"width": "10em"}} src={`/Defi.Money.Logo.Black.png`}/>
-</Fragment>
-) : (
-  <Fragment>
-  <img css={{"width": "10em"}} src={`/Defi.Money.Logo.Sand.png`}/>
-</Fragment>
-)}
-</Fragment>
+    <RadixThemesButton onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8} variant={`ghost`}>
+  <LucideSunMoonIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesButton>
   )
 }
 
-export function Table__body_b0bd2d46e34b9368a32f75f42a495b5e () {
+export function Table__body_213d1a7da14f9e6100c7d5a5912f5360 () {
   const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state)
   const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
@@ -101,8 +91,8 @@ export function Table__body_b0bd2d46e34b9368a32f75f42a495b5e () {
 
   return (
     <RadixThemesTable.Body>
-  {reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.optimism_account_states.map((account_market_state, index_d50eb8dd0a8c6179) => (
-  <RadixThemesTable.Row align={`center`} key={index_d50eb8dd0a8c6179}>
+  {reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.optimism_account_states.map((account_market_state, index_8ea424668c3e3dce) => (
+  <RadixThemesTable.Row align={`center`} key={index_8ea424668c3e3dce}>
   <RadixThemesTable.Cell>
   {account_market_state.at(0)}
 </RadixThemesTable.Cell>
@@ -196,18 +186,39 @@ export function Table__body_b0bd2d46e34b9368a32f75f42a495b5e () {
   )
 }
 
-export function Fragment_b55f21ee14dc9741041d03ae3bbb7d1f () {
+export function Fragment_bc1e24b4c02b802e838772931bb95b5c () {
+  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state)
+  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state)
   const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
 
   return (
     <Fragment>
+  {isTrue(!reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____account_state.account_bound) ? (
+  <Fragment>
+  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.account_queried) ? (
+  <Fragment>
   {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
   <Fragment>
-  <RadixThemesHeading size={`5`}>
-  {`Welcome, ${reflex___state____state__defimoney_monitor___pages___index____app_state.current_user_first_name}`}
-</RadixThemesHeading>
+  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____account_state.handle_bind_address", {})], args, {})}>
+  {`Get notifications for this address`}
+</RadixThemesButton>
+</Fragment>
+) : (
+  <Fragment>
+  <RadixThemesTooltip content={`You need to be logged in to receive notification.`}>
+  <RadixThemesButton disabled={true}>
+  {`Get notifications for this address`}
+</RadixThemesButton>
+</RadixThemesTooltip>
+</Fragment>
+)}
+</Fragment>
+) : (
+  <Fragment/>
+)}
 </Fragment>
 ) : (
   <Fragment/>
@@ -216,31 +227,100 @@ export function Fragment_b55f21ee14dc9741041d03ae3bbb7d1f () {
   )
 }
 
-export function Toaster_6e90e5e87a1cac8c96c683214079bef3 () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
-
-
-  refs['__toast'] = toast
+export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
-  
-const toast_props = {"description": `Check if server is reachable at ${getBackendURL(env.EVENT).href}`, "closeButton": true, "duration": 120000, "id": "websocket-error"};
-const [userDismissed, setUserDismissed] = useState(false);
-useEffect(() => {
-    if (connectErrors.length >= 2) {
-        if (!userDismissed) {
-            toast.error(
-                `Cannot connect to server: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}.`,
-                {...toast_props, onDismiss: () => setUserDismissed(true)},
-            )
-        }
-    } else {
-        toast.dismiss("websocket-error");
-        setUserDismissed(false);  // after reconnection reset dismissed state
-    }
-}, [connectErrors]);
+
+
 
   return (
-    <Toaster closeButton={false} expand={true} position={`bottom-right`} richColors={true} theme={resolvedColorMode}/>
+    <Fragment>
+  {isTrue(connectErrors.length > 0) ? (
+  <Fragment>
+  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "33px", "right": "33px", "animation": `${pulse} 1s infinite`}} size={32}/>
+</Fragment>
+) : (
+  <Fragment/>
+)}
+</Fragment>
+  )
+}
+
+export function Alertdialog__root_75b4ce85183dbcc87ce143ed8bb8f2c0 () {
+  const reflex___state____state__defimoney_monitor___pages___index____alert_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____alert_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_open_change_41942f947da867b08dbe876b1a3faef2 = useCallback((_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____alert_state.toggle_alert", {event:_e0})], [_e0], {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesAlertDialog.Root onOpenChange={on_open_change_41942f947da867b08dbe876b1a3faef2} open={reflex___state____state__defimoney_monitor___pages___index____alert_state.alert_open}>
+  <RadixThemesAlertDialog.Content>
+  <RadixThemesAlertDialog.Title>
+  {`Account Deletion`}
+</RadixThemesAlertDialog.Title>
+  <RadixThemesAlertDialog.Description css={{"size": "2"}}>
+  {`This action will delete your account and permanently erase all your data on llama.rest. You will no longer receive notifications.`}
+</RadixThemesAlertDialog.Description>
+  <RadixThemesFlex css={{"marginTop": "16px"}} justify={`end`} gap={`3`}>
+  <RadixThemesAlertDialog.Cancel>
+  <RadixThemesButton color={`gray`} variant={`soft`}>
+  {`Cancel`}
+</RadixThemesButton>
+</RadixThemesAlertDialog.Cancel>
+  <RadixThemesAlertDialog.Action>
+  <RadixThemesFlex>
+  <Button_0908926cc22d28095a5e3f4d3da78c00/>
+</RadixThemesFlex>
+</RadixThemesAlertDialog.Action>
+</RadixThemesFlex>
+</RadixThemesAlertDialog.Content>
+</RadixThemesAlertDialog.Root>
+  )
+}
+
+const pulse = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
+
+export function Button_0908926cc22d28095a5e3f4d3da78c00 () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  const on_click_862fc9a92160c79975ff531568c1307c = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.delete_account", {})], args, {}), [addEvents, Event])
+
+
+  return (
+    <RadixThemesButton color={`red`} onClick={on_click_862fc9a92160c79975ff531568c1307c} variant={`solid`}>
+  {`Confirm Deletion`}
+</RadixThemesButton>
+  )
+}
+
+export function Fragment_aff581b28d861ad998c1e529dfaa867a () {
+  const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+  return (
+    <Fragment>
+  {isTrue(!reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
+  <Fragment>
+  <TelegramLoginButton botName={`defimoney_monitor_bot`} buttonSize={`medium`} cornerRadius={5} dataAuthUrl={`https://llama.rest/auth`}/>
+</Fragment>
+) : (
+  <Fragment>
+  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.logout", {})], args, {})} variant={`ghost`}>
+  <LucideLogOutIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesButton>
+</Fragment>
+)}
+</Fragment>
   )
 }
 
@@ -283,249 +363,51 @@ export function Fragment_bde5d033a84ff03d98d93916e8424609 () {
   )
 }
 
-const pulse = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-`
-
-
-export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
+export function Fragment_0417ec365a82716891ae5caba41977b4 () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
 
 
 
   return (
     <Fragment>
-  {isTrue(connectErrors.length > 0) ? (
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
   <Fragment>
-  <LucideWifiOffIcon css={{"color": "crimson", "zIndex": 9999, "position": "fixed", "bottom": "33px", "right": "33px", "animation": `${pulse} 1s infinite`}} size={32}/>
+  <img css={{"width": "2em"}} src={`/$GM.Logomark.Black.png`}/>
 </Fragment>
 ) : (
-  <Fragment/>
+  <Fragment>
+  <img css={{"width": "2em"}} src={`/$GM.Logomark.Sand.png`}/>
+</Fragment>
 )}
 </Fragment>
   )
 }
 
-export function Button_0908926cc22d28095a5e3f4d3da78c00 () {
+export function Toaster_6e90e5e87a1cac8c96c683214079bef3 () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
+
+
+  refs['__toast'] = toast
   const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_862fc9a92160c79975ff531568c1307c = useCallback((...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.delete_account", {})], args, {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesButton color={`red`} onClick={on_click_862fc9a92160c79975ff531568c1307c} variant={`solid`}>
-  {`Confirm Deletion`}
-</RadixThemesButton>
-  )
-}
-
-export function Alertdialog__root_75b4ce85183dbcc87ce143ed8bb8f2c0 () {
-  const reflex___state____state__defimoney_monitor___pages___index____alert_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____alert_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_open_change_41942f947da867b08dbe876b1a3faef2 = useCallback((_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____alert_state.toggle_alert", {event:_e0})], [_e0], {}), [addEvents, Event])
-
-
-  return (
-    <RadixThemesAlertDialog.Root onOpenChange={on_open_change_41942f947da867b08dbe876b1a3faef2} open={reflex___state____state__defimoney_monitor___pages___index____alert_state.alert_open}>
-  <RadixThemesAlertDialog.Content>
-  <RadixThemesAlertDialog.Title>
-  {`Account Deletion`}
-</RadixThemesAlertDialog.Title>
-  <RadixThemesAlertDialog.Description css={{"size": "2"}}>
-  {`This action will delete your account and permanently erase all your data on llama.rest. You will no longer receive notifications.`}
-</RadixThemesAlertDialog.Description>
-  <RadixThemesFlex css={{"marginTop": "16px"}} justify={`end`} gap={`3`}>
-  <RadixThemesAlertDialog.Cancel>
-  <RadixThemesButton color={`gray`} variant={`soft`}>
-  {`Cancel`}
-</RadixThemesButton>
-</RadixThemesAlertDialog.Cancel>
-  <RadixThemesAlertDialog.Action>
-  <RadixThemesFlex>
-  <Button_0908926cc22d28095a5e3f4d3da78c00/>
-</RadixThemesFlex>
-</RadixThemesAlertDialog.Action>
-</RadixThemesFlex>
-</RadixThemesAlertDialog.Content>
-</RadixThemesAlertDialog.Root>
-  )
-}
-
-export function Button_c234b7fa9cc5c0783a54d9767fa13370 () {
-  const { toggleColorMode } = useContext(ColorModeContext)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  const on_click_9922dd3e837b9e087c86a2522c2c93f8 = useCallback(toggleColorMode, [addEvents, Event, toggleColorMode])
-
-
-  return (
-    <RadixThemesButton onClick={on_click_9922dd3e837b9e087c86a2522c2c93f8} variant={`ghost`}>
-  <LucideSunMoonIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesButton>
-  )
-}
-
-                function Fallback({ error, resetErrorBoundary }) {
-                    return (
-                        <div>
-  <p>
-  {`Ooops...Unknown Reflex error has occured:`}
-</p>
-  <p css={{"color": "red"}}>
-  {error.message}
-</p>
-  <p>
-  {`Please contact the support.`}
-</p>
-</div>
-                    );
-                }
-            
-
-export function Table__body_b79e928b66c1bcd97f14742c209d50d1 () {
-  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state)
-  const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state)
-
-
   
-    const handleSubmit_a2913a891d3d5cb42ac44a924a29d49d = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{}}
-
-        addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____account_state.handle_set_notification", {form_data:form_data})])
-
-        if (false) {
-            $form.reset()
+const toast_props = {"description": `Check if server is reachable at ${getBackendURL(env.EVENT).href}`, "closeButton": true, "duration": 120000, "id": "websocket-error"};
+const [userDismissed, setUserDismissed] = useState(false);
+useEffect(() => {
+    if (connectErrors.length >= 2) {
+        if (!userDismissed) {
+            toast.error(
+                `Cannot connect to server: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}.`,
+                {...toast_props, onDismiss: () => setUserDismissed(true)},
+            )
         }
-    })
-    
+    } else {
+        toast.dismiss("websocket-error");
+        setUserDismissed(false);  // after reconnection reset dismissed state
+    }
+}, [connectErrors]);
 
   return (
-    <RadixThemesTable.Body>
-  {reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.arbitrum_account_states.map((account_market_state, index_d50eb8dd0a8c6179) => (
-  <RadixThemesTable.Row align={`center`} key={index_d50eb8dd0a8c6179}>
-  <RadixThemesTable.Cell>
-  {account_market_state.at(0)}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  {account_market_state.at(1)}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  {account_market_state.at(2)}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  {account_market_state.at(3)}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  {account_market_state.at(4)}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  {`$${account_market_state.at(7)} - $${account_market_state.at(6)}`}
-</RadixThemesTable.Cell>
-  <RadixThemesTable.Cell>
-  <Fragment>
-  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
-  <Fragment>
-  <RadixThemesPopover.Root>
-  <RadixThemesPopover.Trigger>
-  <RadixThemesFlex>
-  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.handle_managing_notification", {account_market_state:account_market_state})], args, {})}>
-  {`Manage`}
-</RadixThemesButton>
-</RadixThemesFlex>
-</RadixThemesPopover.Trigger>
-  <RadixThemesPopover.Content onCloseAutoFocus={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onEscapeKeyDown={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onFocusOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onInteractOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onPointerDownOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})}>
-  <RadixThemesFlex direction={`column`} gap={`2`}>
-  <RadixThemesCallout.Root css={{"icon": "info"}} size={`1`}>
-  <RadixThemesCallout.Icon>
-  <LucideInfoIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesCallout.Icon>
-  <RadixThemesCallout.Text>
-  {`Conversion to $Money will begin when ${account_market_state.at(0)} drops below $${account_market_state.at(6)}`}
-</RadixThemesCallout.Text>
-</RadixThemesCallout.Root>
-  <RadixThemesFlex direction={`column`} gap={`2`}>
-  <RadixThemesText as={`p`}>
-  {`Notify me when ${account_market_state.at(0)} price is below: `}
-</RadixThemesText>
-  <RadixFormRoot className={`Root `} css={{"width": "100%"}} onSubmit={handleSubmit_a2913a891d3d5cb42ac44a924a29d49d}>
-  <RadixThemesFlex align={`start`} className={`rx-Stack`} direction={`row`} gap={`3`}>
-  <RadixThemesTextField.Root name={`threshold_price`} placeholder={`1234.56`} type={`number`}>
-  <RadixThemesTextField.Slot css={{"paddingLeft": "0"}}>
-  <LucideDollarSignIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesTextField.Slot>
-</RadixThemesTextField.Root>
-  <RadixThemesButton type={`submit`}>
-  {`Confirm`}
-</RadixThemesButton>
-</RadixThemesFlex>
-</RadixFormRoot>
-  <RadixThemesFlex css={{"flex": 1, "justifySelf": "stretch", "alignSelf": "stretch"}}/>
-  <Fragment>
-  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state.threshold_price_set) ? (
-  <Fragment>
-  <RadixThemesText as={`p`}>
-  {`Current notification price: `}
-  <RadixThemesBadge color={`green`}>
-  {`$${reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state.current_threshold_price}`}
-</RadixThemesBadge>
-</RadixThemesText>
-</Fragment>
-) : (
-  <Fragment/>
-)}
-</Fragment>
-</RadixThemesFlex>
-</RadixThemesFlex>
-</RadixThemesPopover.Content>
-</RadixThemesPopover.Root>
-</Fragment>
-) : (
-  <Fragment>
-  <RadixThemesTooltip content={`You need to be logged in to receive notification.`}>
-  <RadixThemesButton disabled={true}>
-  {`Manage`}
-</RadixThemesButton>
-</RadixThemesTooltip>
-</Fragment>
-)}
-</Fragment>
-</RadixThemesTable.Cell>
-</RadixThemesTable.Row>
-))}
-</RadixThemesTable.Body>
-  )
-}
-
-export function Fragment_aff581b28d861ad998c1e529dfaa867a () {
-  const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-  return (
-    <Fragment>
-  {isTrue(!reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
-  <Fragment>
-  <TelegramLoginButton botName={`defimoney_monitor_bot`} buttonSize={`medium`} cornerRadius={5} dataAuthUrl={`https://llama.rest/auth`}/>
-</Fragment>
-) : (
-  <Fragment>
-  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.logout", {})], args, {})} variant={`ghost`}>
-  <LucideLogOutIcon css={{"color": "var(--current-color)"}}/>
-</RadixThemesButton>
-</Fragment>
-)}
-</Fragment>
+    <Toaster closeButton={false} expand={true} position={`bottom-right`} richColors={true} theme={resolvedColorMode}/>
   )
 }
 
@@ -588,26 +470,6 @@ export function Fragment_949044a8fa0509e904aef6402b0799d6 () {
   )
 }
 
-export function Fragment_0417ec365a82716891ae5caba41977b4 () {
-  const { resolvedColorMode } = useContext(ColorModeContext)
-
-
-
-  return (
-    <Fragment>
-  {isTrue(((resolvedColorMode) === (`light`))) ? (
-  <Fragment>
-  <img css={{"width": "2em"}} src={`/$GM.Logomark.Black.png`}/>
-</Fragment>
-) : (
-  <Fragment>
-  <img css={{"width": "2em"}} src={`/$GM.Logomark.Sand.png`}/>
-</Fragment>
-)}
-</Fragment>
-  )
-}
-
 export function Div_ac2a89ea84667d600a059f034bd91dfe () {
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
@@ -617,6 +479,144 @@ export function Div_ac2a89ea84667d600a059f034bd91dfe () {
     <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
   <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
 </div>
+  )
+}
+
+export function Table__body_88c41aacc6f8f8d5cf6aa72114a47f2e () {
+  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state)
+  const reflex___state____state__defimoney_monitor___pages___index____app_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+  const reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state = useContext(StateContexts.reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state)
+
+
+  
+    const handleSubmit_a2913a891d3d5cb42ac44a924a29d49d = useCallback((ev) => {
+        const $form = ev.target
+        ev.preventDefault()
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{}}
+
+        addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____account_state.handle_set_notification", {form_data:form_data})])
+
+        if (false) {
+            $form.reset()
+        }
+    })
+    
+
+  return (
+    <RadixThemesTable.Body>
+  {reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____query_state.arbitrum_account_states.map((account_market_state, index_8ea424668c3e3dce) => (
+  <RadixThemesTable.Row align={`center`} key={index_8ea424668c3e3dce}>
+  <RadixThemesTable.Cell>
+  {account_market_state.at(0)}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  {account_market_state.at(1)}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  {account_market_state.at(2)}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  {account_market_state.at(3)}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  {account_market_state.at(4)}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  {`$${account_market_state.at(7)} - $${account_market_state.at(6)}`}
+</RadixThemesTable.Cell>
+  <RadixThemesTable.Cell>
+  <Fragment>
+  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state.user_logged_in) ? (
+  <Fragment>
+  <RadixThemesPopover.Root>
+  <RadixThemesPopover.Trigger>
+  <RadixThemesFlex>
+  <RadixThemesButton onClick={(...args) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.handle_managing_notification", {account_market_state:account_market_state})], args, {})}>
+  {`Manage`}
+</RadixThemesButton>
+</RadixThemesFlex>
+</RadixThemesPopover.Trigger>
+  <RadixThemesPopover.Content onCloseAutoFocus={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onEscapeKeyDown={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onFocusOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onInteractOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})} onPointerDownOutside={(_e0) => addEvents([Event("reflex___state____state.defimoney_monitor___pages___index____app_state.defimoney_monitor___pages___index____notification_state.reset_account_market_state", {event_trigger:_e0})], [_e0], {})}>
+  <RadixThemesFlex direction={`column`} gap={`2`}>
+  <RadixThemesCallout.Root css={{"icon": "info"}} size={`1`}>
+  <RadixThemesCallout.Icon>
+  <LucideInfoIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesCallout.Icon>
+  <RadixThemesCallout.Text>
+  {`Conversion to $Money will begin when ${account_market_state.at(0)} drops below $${account_market_state.at(6)}`}
+</RadixThemesCallout.Text>
+</RadixThemesCallout.Root>
+  <RadixThemesFlex direction={`column`} gap={`2`}>
+  <RadixThemesText as={`p`}>
+  {`Notify me when ${account_market_state.at(0)} price is below: `}
+</RadixThemesText>
+  <RadixFormRoot className={`Root `} css={{"width": "100%"}} onSubmit={handleSubmit_a2913a891d3d5cb42ac44a924a29d49d}>
+  <RadixThemesFlex align={`start`} className={`rx-Stack`} direction={`row`} gap={`3`}>
+  <RadixThemesTextField.Root name={`threshold_price`} placeholder={`1234.56`} type={`number`}>
+  <RadixThemesTextField.Slot css={{"paddingLeft": "0"}}>
+  <LucideDollarSignIcon css={{"color": "var(--current-color)"}}/>
+</RadixThemesTextField.Slot>
+</RadixThemesTextField.Root>
+  <RadixThemesButton type={`submit`}>
+  {`Confirm`}
+</RadixThemesButton>
+</RadixThemesFlex>
+</RadixFormRoot>
+  <RadixThemesFlex css={{"flex": 1, "justifySelf": "stretch", "alignSelf": "stretch"}}/>
+  <Fragment>
+  {isTrue(reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state.threshold_price_set) ? (
+  <Fragment>
+  <RadixThemesText as={`p`}>
+  {`Current notification price: `}
+  <RadixThemesBadge color={`green`}>
+  {`$${reflex___state____state__defimoney_monitor___pages___index____app_state__defimoney_monitor___pages___index____notification_state.current_threshold_price}`}
+</RadixThemesBadge>
+</RadixThemesText>
+</Fragment>
+) : (
+  <Fragment/>
+)}
+</Fragment>
+</RadixThemesFlex>
+</RadixThemesFlex>
+</RadixThemesPopover.Content>
+</RadixThemesPopover.Root>
+</Fragment>
+) : (
+  <Fragment>
+  <RadixThemesTooltip content={`You need to be logged in to receive notification.`}>
+  <RadixThemesButton disabled={true}>
+  {`Manage`}
+</RadixThemesButton>
+</RadixThemesTooltip>
+</Fragment>
+)}
+</Fragment>
+</RadixThemesTable.Cell>
+</RadixThemesTable.Row>
+))}
+</RadixThemesTable.Body>
+  )
+}
+
+export function Fragment_63dcd1e904b67df0929861532875d439 () {
+  const { resolvedColorMode } = useContext(ColorModeContext)
+
+
+
+  return (
+    <Fragment>
+  {isTrue(((resolvedColorMode) === (`light`))) ? (
+  <Fragment>
+  <img css={{"width": "10em"}} src={`/Defi.Money.Logo.Black.png`}/>
+</Fragment>
+) : (
+  <Fragment>
+  <img css={{"width": "10em"}} src={`/Defi.Money.Logo.Sand.png`}/>
+</Fragment>
+)}
+</Fragment>
   )
 }
 
@@ -664,7 +664,7 @@ export default function Component() {
 </RadixThemesFlex>
 </nav>
   <Alertdialog__root_75b4ce85183dbcc87ce143ed8bb8f2c0/>
-  <RadixThemesFlex css={{"width": "auto", "margin": "1.5em", "flexGrow": "1"}} direction={`column`} gap={`5`}>
+  <RadixThemesFlex css={{"width": "auto", "marginTop": "2em", "marginBottom": "2em", "@media screen and (min-width: 0px)": {"marginInlineStart": "1.5em", "marginInlineEnd": "1.5em"}, "@media screen and (min-width: 48em)": {"marginInlineStart": "3em", "marginInlineEnd": "3em"}, "@media screen and (min-width: 62em)": {"marginInlineStart": "10em", "marginInlineEnd": "10em"}, "@media screen and (min-width: 80em)": {"marginInlineStart": "10em", "marginInlineEnd": "10em"}, "flexGrow": "1"}} direction={`column`} gap={`5`}>
   <Fragment_b55f21ee14dc9741041d03ae3bbb7d1f/>
   <RadixThemesCard css={{"spacing": "2", "width": "100%"}} variant={`surface`}>
   <RadixThemesStrong>
@@ -739,7 +739,7 @@ export default function Component() {
 </RadixThemesTable.ColumnHeaderCell>
 </RadixThemesTable.Row>
 </RadixThemesTable.Header>
-  <Table__body_b79e928b66c1bcd97f14742c209d50d1/>
+  <Table__body_88c41aacc6f8f8d5cf6aa72114a47f2e/>
 </RadixThemesTable.Root>
 </Fragment>
 </RadixThemesScrollArea>
@@ -776,7 +776,7 @@ export default function Component() {
 </RadixThemesTable.ColumnHeaderCell>
 </RadixThemesTable.Row>
 </RadixThemesTable.Header>
-  <Table__body_b0bd2d46e34b9368a32f75f42a495b5e/>
+  <Table__body_213d1a7da14f9e6100c7d5a5912f5360/>
 </RadixThemesTable.Root>
 </Fragment>
 </RadixThemesScrollArea>
