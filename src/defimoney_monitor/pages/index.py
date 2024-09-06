@@ -484,13 +484,17 @@ def navbar() -> rx.Component:
 def footer() -> rx.Component:
     return rx.hstack(
         rx.text("@pastelfork", color_scheme="gray", size="1"),
+        rx.link(
+            rx.icon(tag="github", size=15),
+            href="https://github.com/pastelfork/llama-rest",
+        ),
         bottom="0px",
         # position="sticky",
         width="100%",
         z_index="1",
         padding_y="1em",
         justify="center",
-        align="end",
+        align="center",
         border_top=styles.border,
         margin_top="3em",
     )
