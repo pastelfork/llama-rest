@@ -14,18 +14,6 @@ import NextHead from "next/head"
 
 
 
-export function Div_ac2a89ea84667d600a059f034bd91dfe () {
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-  return (
-    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
-  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
-</div>
-  )
-}
-
 const pulse = keyframes`
     0% {
         opacity: 0;
@@ -79,6 +67,18 @@ export function Fragment_cf53a535ae2e610a113dd361eb6ac95b () {
   <Fragment/>
 )}
 </Fragment>
+  )
+}
+
+export function Div_ac2a89ea84667d600a059f034bd91dfe () {
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+  return (
+    <div css={{"position": "fixed", "width": "100vw", "height": "0"}} title={`Connection Error: ${(connectErrors.length > 0) ? connectErrors[connectErrors.length - 1].message : ''}`}>
+  <Fragment_cf53a535ae2e610a113dd361eb6ac95b/>
+</div>
   )
 }
 

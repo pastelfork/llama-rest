@@ -90,6 +90,13 @@ class QueryState(AppState):
 
     def handle_get_market_states_for_account(self, account_address: str):
         self.account_queried = False
+        if account_address == "":
+            self.input_validation_text = ""
+            self.current_address = ""
+            self.account_queried = False
+            self.arbitrum_account_states = []
+            self.optimism_account_states = []
+            return
         if not Web3.is_address(account_address):
             self.input_validation_text = "Invalid address"
             return
@@ -104,6 +111,12 @@ class QueryState(AppState):
     @rx.var
     def get_current_address(self) -> str:
         return self.current_address
+    
+    @rx.var
+    def is_input_error(self):
+        if self.input_validation_text == "":
+            return False
+        return True
 
 
 class AccountState(AppState):
@@ -140,6 +153,11 @@ class AccountState(AppState):
         notification_state.current_threshold_price = form_data['threshold_price']
         notification_state.threshold_price_set = True
         return notification_state.manage_notification_success()
+    
+    # @rx.var
+    # def get_bound_address(self, breakpoints):
+    #     print(breakpoints)
+    #     return self.bound_address
                 
 
 class NotificationState(AppState):
@@ -265,7 +283,7 @@ class TelegramComponent(rx.Component):
 
     botName: rx.Var[str]
     dataAuthUrl: rx.Var[str]
-    buttonSize: rx.Var[str] = "medium"
+    buttonSize: rx.Var[str]
     cornerRadius: rx.Var[int] = 5
 
 telegram_component = TelegramComponent.create
@@ -309,6 +327,16 @@ def delete_account_alert():
         on_open_change=AlertState.toggle_alert,
     )
 
+def address_badge():
+    return rx.flex(
+        rx.tablet_and_desktop(
+                rx.badge(AccountState.bound_address, size="2", variant="soft", high_contrast=True, _hover={"cursor": "pointer"})
+            ),
+            rx.mobile_only(
+                rx.badge(f"{AccountState.bound_address[:4]}...{AccountState.bound_address[-4:]}", size="2", variant="soft", high_contrast=True, _hover={"cursor": "pointer"})
+            ),
+    )
+
 def navbar() -> rx.Component:
     """The navbar.
 
@@ -319,28 +347,44 @@ def navbar() -> rx.Component:
     return rx.el.nav(
         rx.hstack(
             # The logo.
-            # rx.color_mode_cond(
-            #     rx.image(src="/reflex_black.svg", height="1em"),
-            #     rx.image(src="/reflex_white.svg", height="1em"),
-            # ),
             rx.flex(
-                rx.image(src="/llama_rest_logo.jpg", width="6em"),
-                # rx.heading("Defi.Money Monitor", font_size="1em", color_scheme="bronze"),
-                rx.color_mode_cond(
-                    light=rx.image(src="/Defi.Money.Logo.Black.png", width="10em"),
-                    dark=rx.image(src="/Defi.Money.Logo.Sand.png", width="10em"),
+                rx.tablet_and_desktop(
+                    rx.image(src="/llama_rest_logo.jpg", width="6em"),
                 ),
-                spacing="7",
+                rx.mobile_only(
+                    rx.image(src="/llama_rest_logo_small.jpg", width="2em"),
+                ),
+                # rx.heading("Defi.Money Monitor", font_size="1em", color_scheme="bronze"),
+                rx.tablet_and_desktop(
+                    rx.color_mode_cond(
+                        light=rx.image(src="/Defi.Money.Logo.Black.png", width="10em"),
+                        dark=rx.image(src="/Defi.Money.Logo.Sand.png", width="10em"),
+                    ),
+                ),
+                rx.mobile_only(
+                    rx.color_mode_cond(
+                        light=rx.image(src="/$GM.Logomark.Black.png", width="2em"),
+                        dark=rx.image(src="/$GM.Logomark.Sand.png", width="2em"),
+                    ),
+                ),
+                spacing=rx.breakpoints(
+                    initial="3",
+                    sm="5",
+                    md="7",
+                    lg="7",
+                ),
                 align="center",
-                
             ),
             rx.spacer(),
             rx.cond(
                 # Account address badge
                 AccountState.account_bound,
                 rx.menu.root(
+                    # rx.menu.trigger(
+                    #     rx.badge(AccountState.bound_address, size="2", variant="soft", high_contrast=True, _hover={"cursor": "pointer"}),
+                    # ),
                     rx.menu.trigger(
-                        rx.badge(AccountState.bound_address, size="2", variant="soft", high_contrast=True, _hover={"cursor": "pointer"}),
+                        address_badge(),
                     ),
                     rx.menu.content(
                         rx.menu.item(
@@ -360,8 +404,9 @@ def navbar() -> rx.Component:
                         # botName="llama_rest_dev_bot", # uncomment for local development
                         # 
                         # dataAuthUrl="https://defimoney-monitor.reflex.run/auth" # uncomment for reflex deployment
-                        dataAuthUrl="https://llama.rest/auth" # uncomment for public deployment
+                        dataAuthUrl="https://llama.rest/auth", # uncomment for public deployment
                         # dataAuthUrl="https://nord.prawn-dinosaur.ts.net/auth", # uncomment for local development
+                        buttonSize="medium"
                         ),
                     # logout button
                     rx.button(
@@ -383,9 +428,10 @@ def navbar() -> rx.Component:
             ),
             # menu_button(), # uncomment for menu button for sidebar
             align="center",
-            width="100%",
+            width="auto",
             padding_y="1.25em",
             padding_x=["1em", "1em", "2em"],
+            wrap="wrap",
         ),
         display=["block", "block", "block", "block", "block", "none"],
         position="sticky",
@@ -395,17 +441,19 @@ def navbar() -> rx.Component:
         border_bottom=styles.border,
     )
 
-# def footer() -> rx.Component:
-#     return rx.container(
-#         rx.text("footer"),
-#         bottom="0px",
-#         position="fixed",
-#         width="100%",
-#         z_index="1",
-#         padding_y="0.5em",
-#         justify="center",
-#         align="center",
-#     )
+def footer() -> rx.Component:
+    return rx.hstack(
+        rx.text("@pastelfork", color_scheme="gray", size="1"),
+        bottom="0px",
+        # position="sticky",
+        width="100%",
+        z_index="1",
+        padding_y="1em",
+        justify="center",
+        align="end",
+        border_top=styles.border,
+        margin_top="3em"
+    )
 
 @rx.page(route="/", title="llama.rest", on_load=AppState.load_account)
 def index() -> rx.Component:
@@ -418,117 +466,129 @@ def index() -> rx.Component:
         navbar(),
         delete_account_alert(),
         rx.flex(
-            rx.vstack(
-                rx.spacer(),
-                rx.cond(
-                    AppState.user_logged_in,
-                    rx.heading(f"Welcome, {AppState.current_user_first_name}", size="5")
-                ),
-                rx.card(
-                    rx.text.strong("Monitor any defi.money positions. Sign in to receive Telegram notifications."),
-                    rx.text(rx.text.strong("1. "), "Sign in with Telegram."),
-                    rx.text(rx.text.strong("2. "), "Paste in your wallet address."),
-                    rx.text(rx.text.strong("3. "), "Set up notification price points for your positions."),
-                    rx.text(rx.text.strong("4. "), "You will then receive Telegram notifications when collateral price drops below your chosen price points."),
-                    rx.text(rx.text.strong("5. "), "Rest up, llama  🌿"),
-                    variant="surface",
-                    spacing="2",
-                    width="100%",
-                ),
-                rx.vstack(
-                    rx.cond(
-                        ~AccountState.account_bound,
-                        rx.flex(
-                            # Wallet address input
-                            rx.debounce_input(
-                                rx.input(
-                                    rx.cond(
-                                        # If account successfully queried
-                                        QueryState.account_queried,
-                                        # Circle check icon
-                                        rx.input.slot(rx.icon("circle-check", color="green"), padding_left="2"),
-                                        rx.cond(
-                                            # If still querying
-                                            QueryState.loading,
-                                            # Show spinner
-                                            rx.input.slot(rx.spinner(loading=True), padding_left="2"),
-                                            # Else show search icon
-                                            rx.input.slot(rx.icon("search"), padding_left="2"),
-                                        ),
-                                    ),
-                                    on_change=lambda e: QueryState.handle_get_market_states_for_account(e),
-                                    placeholder="Your wallet address here...",
-                                    value=QueryState.current_address,
-                                    size="3",
-                                    width="100%",
-                                    # max_width="450px",
-                                    radius="large",
-                                    variant="surface",
-                                    # style=styles.ghost_input_style,
-                                ),
-                                debounce_timeout=700,
-                            ),
-                            # Input validation text
-                            rx.text(QueryState.input_validation_text, color="red", size="1"),
-                            justify="between",
-                            align="center",
-                            width="100%",
-                            spacing="3"
-                        ),
-                    ),
-                    rx.flex(
-                        rx.cond(
-                            # If account is not bound,
-                            ~AccountState.account_bound,
-                            rx.cond(
-                                # If account is correctly queried, data loaded
-                                QueryState.account_queried,
-                                rx.cond(
-                                    # and if user is logged in, show the enabled button
-                                    AppState.user_logged_in,
-                                    # Get notifications for this address button
-                                    rx.button(
-                                        "Get notifications for this address",
-                                        on_click=AccountState.handle_bind_address
-                                    ),
-                                    # else if user is not logged in, disable the button and show tooltip
-                                    rx.tooltip(
-                                        rx.button(
-                                            "Get notifications for this address",
-                                            disabled=True,
-                                        ),
-                                        content="You need to be logged in to receive notification.",
-                                    )
-                                )
-                            ),
-                        ),
-                        spacing="2",
-                        align="left",
-                        width="100%",
-                    ),
-                    width="100%",
-                ),
-                rx.flex(
-                    rx.heading("Arbitrum", size="3", color_scheme="violet"),
-                    create_table(QueryState.arbitrum_account_states),
-                    direction="column",
-                    spacing="2"
-                ),
-                rx.flex(
-                    rx.heading("Optimism", size="3", color_scheme="ruby"),
-                    create_table(QueryState.optimism_account_states),
-                    direction="column",
-                    spacing="2"
-                ),
-                # footer(),
-                spacing="8",
+            # rx.spacer(),
+            rx.cond(
+                AppState.user_logged_in,
+                rx.heading(f"Welcome, {AppState.current_user_first_name}", size="5")
+            ),
+            rx.card(
+                rx.text.strong("Monitor any defi.money positions. Sign in to receive Telegram notifications."),
+                rx.text(rx.text.strong("1. "), "Sign in with Telegram."),
+                rx.text(rx.text.strong("2. "), "Paste in your wallet address."),
+                rx.text(rx.text.strong("3. "), "Set up notification price points for your positions."),
+                rx.text(rx.text.strong("4. "), "You will then receive Telegram notifications when collateral price drops below your chosen price points."),
+                rx.text(rx.text.strong("5. "), "Rest up, llama  🌿"),
+                variant="surface",
+                spacing="2",
                 width="100%",
             ),
-            max_width="100%",
-            margin="auto"
+            rx.vstack(
+                rx.cond(
+                    ~AccountState.account_bound,
+                    rx.flex(
+                        # Wallet address input
+                        rx.debounce_input(
+                            rx.input(
+                                rx.cond(
+                                    # If account successfully queried
+                                    QueryState.account_queried,
+                                    # Circle check icon
+                                    rx.input.slot(rx.icon("circle-check", color="green"), padding_left="2"),
+                                    rx.cond(
+                                        # If still querying
+                                        QueryState.loading,
+                                        # Show spinner
+                                        rx.input.slot(rx.spinner(loading=True), padding_left="2"),
+                                        # Else show search icon
+                                        rx.input.slot(rx.icon("search"), padding_left="2"),
+                                    ),
+                                ),
+                                on_change=lambda e: QueryState.handle_get_market_states_for_account(e),
+                                placeholder="Your wallet address here...",
+                                value=QueryState.current_address,
+                                size="3",
+                                width="100%",
+                                # max_width="450px",
+                                radius="large",
+                                variant="surface",
+                                # style=styles.ghost_input_style,
+                            ),
+                            debounce_timeout=700,
+                        ),
+                        # Input validation text
+                        rx.cond(
+                            QueryState.is_input_error,
+                            rx.text(QueryState.input_validation_text, color="red", size="1"),
+                        ),
+                        justify="between",
+                        align="center",
+                        width="100%",
+                        spacing="3"
+                    ),
+                ),
+                rx.flex(
+                    rx.cond(
+                        # If account is not bound,
+                        ~AccountState.account_bound,
+                        rx.cond(
+                            # If account is correctly queried, data loaded
+                            QueryState.account_queried,
+                            rx.cond(
+                                # and if user is logged in, show the enabled button
+                                AppState.user_logged_in,
+                                # Get notifications for this address button
+                                rx.button(
+                                    "Get notifications for this address",
+                                    on_click=AccountState.handle_bind_address
+                                ),
+                                # else if user is not logged in, disable the button and show tooltip
+                                rx.tooltip(
+                                    rx.button(
+                                        "Get notifications for this address",
+                                        disabled=True,
+                                    ),
+                                    content="You need to be logged in to receive notification.",
+                                )
+                            )
+                        ),
+                    ),
+                    spacing="2",
+                    align="left",
+                    width="100%",
+                ),
+                width="100%",
+            ),
+            rx.flex(
+                rx.heading("Arbitrum", size="3", color_scheme="violet"),
+                rx.scroll_area(
+                    create_table(QueryState.arbitrum_account_states),
+                    type="auto",
+                    scrollbars="horizontal",
+                    style={"width": "100%"},
+                ),
+                direction="column",
+                spacing="2"
+            ),
+            rx.flex(
+                rx.heading("Optimism", size="3", color_scheme="ruby"),
+                rx.scroll_area(
+                    create_table(QueryState.optimism_account_states),
+                    type="auto",
+                    scrollbars="horizontal",
+                    style={"width": "100%"},
+                ),
+                direction="column",
+                spacing="2"
+            ),
+            footer(),
+            spacing="5",
+            width="auto",
+            margin="1.5em",
+            direction="column",
+            flex_grow="1",
         ),
         flex_direction="column",
-        width="100%",
-        margin="auto",
+        width="auto",
+        # margin="auto",
         position="relative",
     )
