@@ -21,6 +21,4 @@ app = rx.App(
         accent_color="violet"
     )
 )
-# app.register_lifespan_task(poll_oracles_task)
-# app.register_lifespan_task(handle_process_prices_updates)
 app.register_lifespan_task(start_polling_tasks)
