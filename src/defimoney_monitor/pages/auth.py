@@ -9,7 +9,6 @@ from ..backend.telegram_bot import send_message
 from ..templates import template
 from .index import AppState
 
-# load_dotenv()
 
 MONGODB_CONNECTION_STRING = os.environ["MONGODB_CONNECTION_STRING"]
 

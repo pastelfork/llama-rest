@@ -24,6 +24,9 @@ console = Console()
 
 MONGODB_CONNECTION_STRING = os.environ["MONGODB_CONNECTION_STRING"]
 
+BOT_NAME = os.environ["BOT_NAME"]
+DATA_AUTH_URL = os.environ["DATA_AUTH_URL"]
+
 mongodb_client = MongoClient(MONGODB_CONNECTION_STRING)
 db = mongodb_client["defimoney_monitor_db"]
 users = db["users"]
@@ -442,12 +445,8 @@ def navbar() -> rx.Component:
                     ~AppState.user_logged_in,
                     # Telegram login button
                     telegram_component(
-                        botName="defimoney_monitor_bot",  # uncomment for public deployment
-                        # botName="llama_rest_dev_bot", # uncomment for local development
-                        #
-                        # dataAuthUrl="https://defimoney-monitor.reflex.run/auth" # uncomment for reflex deployment
-                        dataAuthUrl="https://llama.rest/auth",  # uncomment for public deployment
-                        # dataAuthUrl="https://nord.prawn-dinosaur.ts.net/auth", # uncomment for local development
+                        botName=BOT_NAME,
+                        dataAuthUrl=DATA_AUTH_URL,
                         buttonSize="medium",
                     ),
                     # logout button
