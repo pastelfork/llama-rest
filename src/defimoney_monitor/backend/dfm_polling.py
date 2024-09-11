@@ -9,7 +9,7 @@ from rich.console import Console
 from pymongo import MongoClient
 from .telegram_bot import send_message
 
-from .query import poll_oracles
+from .dfm_query import poll_oracles
 
 console = Console()
 
@@ -110,18 +110,18 @@ async def poll_oracles_task(queue):
         await asyncio.sleep(30)
 
 
-polling_task_running = False
-processing_task_running = False
+dfm_polling_task_running = False
+dfm_processing_task_running = False
 
 
 async def start_polling_tasks():
-    global polling_task_running, processing_task_running
-    if polling_task_running or processing_task_running:
+    global dfm_polling_task_running, dfm_processing_task_running
+    if dfm_polling_task_running or dfm_processing_task_running:
         return
     # asyncio.get_event_loop().set_debug(True)
-    if not polling_task_running and not processing_task_running:
-        polling_task_running = True
-        processing_task_running = True
+    if not dfm_polling_task_running and not dfm_processing_task_running:
+        dfm_polling_task_running = True
+        dfm_processing_task_running = True
         queue = asyncio.Queue()
         # console.log(f"Current event loop: {asyncio.get_running_loop()}", log_locals=True)
         task1 = asyncio.create_task(poll_oracles_task(queue))

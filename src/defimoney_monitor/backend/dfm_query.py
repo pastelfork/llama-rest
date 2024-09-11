@@ -7,11 +7,19 @@ from rich.console import Console
 
 import reflex as rx
 from web3 import Web3, HTTPProvider
+from web3.providers.rpc.utils import (
+    REQUEST_RETRY_ALLOWLIST,
+    ExceptionRetryConfiguration,
+)
+from web3.exceptions import ProviderConnectionError
+
+from requests import HTTPError, Timeout
+
 from eth_abi import decode
 
 from pymongo import MongoClient
 
-from .abi.abi import *
+from .abi.dfm_abi import *
 from .telegram_bot import send_message
 
 console = Console()
@@ -25,8 +33,30 @@ mongodb_client = MongoClient(MONGODB_CONNECTION_STRING)
 db = mongodb_client["defimoney_monitor_db"]
 users = db["users"]
 
-w3_arbitrum = Web3(HTTPProvider(ARBITRUM_RPC_URL, request_kwargs={"timeout": 60}))
-w3_optimism = Web3(HTTPProvider(OPTIMISM_RPC_URL, request_kwargs={"timeout": 60}))
+w3_arbitrum = Web3(
+    HTTPProvider(
+        ARBITRUM_RPC_URL,
+        request_kwargs={"timeout": 60},
+        exception_retry_configuration=ExceptionRetryConfiguration(
+            errors=(ProviderConnectionError, HTTPError, Timeout),
+            retries=100,
+            backoff_factor=0.125,
+            method_allowlist=REQUEST_RETRY_ALLOWLIST,
+        ),
+    )
+)
+w3_optimism = Web3(
+    HTTPProvider(
+        OPTIMISM_RPC_URL,
+        request_kwargs={"timeout": 60},
+        exception_retry_configuration=ExceptionRetryConfiguration(
+            errors=(ProviderConnectionError, HTTPError, Timeout),
+            retries=100,
+            backoff_factor=0.125,
+            method_allowlist=REQUEST_RETRY_ALLOWLIST,
+        ),
+    )
+)
 
 arbitrum_cdp_market_views_ca = "0x45D92BF29f1b5B0e7eb0640D6230Fae488311845"
 optimism_cdp_market_views_ca = "0x4459FF9D7FE90FD550c0b9d39E00b4f18b13A0Ab"

@@ -1,5 +1,3 @@
-"""The overview page of the app."""
-
 import os
 from dotenv import load_dotenv
 import datetime
@@ -14,7 +12,7 @@ from web3 import Web3
 
 from .. import styles
 
-from ..backend.query import get_market_states_for_account, get_collateral_oracle_price
+from ..backend import dfm_query, curve_query
 
 from rich.traceback import install
 from rich.console import Console
@@ -28,8 +26,10 @@ BOT_NAME = os.environ["BOT_NAME"]
 DATA_AUTH_URL = os.environ["DATA_AUTH_URL"]
 
 mongodb_client = MongoClient(MONGODB_CONNECTION_STRING)
-db = mongodb_client["defimoney_monitor_db"]
-users = db["users"]
+dfm_db = mongodb_client["defimoney_monitor_db"]
+dfm_users = dfm_db["users"]
+curve_db = mongodb_client["curve_monitor_db"]
+curve_users = curve_db["users"]
 
 
 class AppState(rx.State):
@@ -39,6 +39,8 @@ class AppState(rx.State):
     current_user_first_name: str
     current_user_username: str
     user_logged_in: bool = False
+    protocol: str
+    # is_protocol_selected: bool = False
 
     @rx.var
     def get_current_user_tg_id(self) -> int:
@@ -47,6 +49,12 @@ class AppState(rx.State):
     async def load_account(self):
         if not self.user_logged_in:
             return
+        
+        if self.protocol == "dfm":
+            users = dfm_users
+        elif self.protocol == "curve":
+            users = curve_users
+
         user = users.find_one({"tg_id": self.current_user_tg_id})
         if user.get("address"):
             query_state = await self.get_state(QueryState)
@@ -54,12 +62,34 @@ class AppState(rx.State):
             account_state.account_bound = True
             account_state.bound_address = user.get("address")
             return query_state.handle_get_market_states_for_account(user.get("address"))
+        
+    @rx.var
+    def is_protocol_dfm(self):
+        if self.protocol == "dfm":
+            return True
+        else:
+            return False
+
+    @rx.var
+    def is_protocol_curve(self):
+        if self.protocol == "curve":
+            return True
+        else:
+            return False
+    
+    @rx.var
+    def is_protocol_selected(self):
+        if self.protocol != "":
+            return True
+        else:
+            return False
 
     async def logout(self):
         self.user_logged_in = False
         self.current_user_tg_id = 0
         self.current_user_first_name = ""
         self.current_user_username = ""
+        self.protocol = ""
         query_state = await self.get_state(QueryState)
         query_state.account_queried = False
         query_state.current_address = ""
@@ -70,6 +100,11 @@ class AppState(rx.State):
         account_state.bound_address = ""
 
     async def delete_account(self):
+        if self.protocol == "dfm":
+            users = dfm_users
+        elif self.protocol == "curve":
+            users = curve_users
+
         try:
             users.delete_one({"tg_id": self.current_user_tg_id})
         except Exception as e:
@@ -77,9 +112,15 @@ class AppState(rx.State):
 
         await self.logout()
         return rx.toast("Account deleted", duration=10000, close_button=True)
+    
+    async def handle_select_protocol(self, protocol: str):
+        await self.logout()
+        yield
+        self.protocol = protocol
 
 
 class QueryState(AppState):
+    mainnet_account_states: list[list]
     arbitrum_account_states: list[list]
     optimism_account_states: list[list]
 
@@ -88,25 +129,33 @@ class QueryState(AppState):
     current_address: str = ""
     account_queried: bool = False
 
-    def handle_get_market_states_for_account(self, account_address: str):
+    async def handle_get_market_states_for_account(self, account_address: str):
         self.account_queried = False
         if account_address == "":
             self.input_validation_text = ""
             self.current_address = ""
             self.account_queried = False
+            self.mainnet_account_states = []
             self.arbitrum_account_states = []
             self.optimism_account_states = []
             return
+
         if not Web3.is_address(account_address):
             self.input_validation_text = "Invalid address"
             return
+
         self.input_validation_text = ""
         self.current_address = str(Web3.to_checksum_address(account_address))
         self.loading = True
         yield
-        self.arbitrum_account_states, self.optimism_account_states = (
-            get_market_states_for_account(account_address=self.current_address)
-        )
+        app_state = await self.get_state(AppState)
+        if app_state.protocol == "dfm":
+            self.arbitrum_account_states, self.optimism_account_states = (
+                dfm_query.get_market_states_for_account(account_address=self.current_address)
+            )
+        elif app_state.protocol == "curve":
+            self.mainnet_account_states = curve_query.get_market_states_for_account(account_address=self.current_address)
+
         self.loading = False
         self.account_queried = True
 
@@ -126,6 +175,12 @@ class AccountState(AppState):
     bound_address: str = ""
 
     async def handle_bind_address(self):
+        app_state = await self.get_state(AppState)
+        if app_state.protocol == "dfm":
+            users = dfm_users
+        elif app_state.protocol == "curve":
+            users = curve_users
+
         query_filter = {"tg_id": self.current_user_tg_id}
         query_state = await self.get_state(QueryState)
         update_operation = {"$set": {"address": query_state.current_address}}
@@ -145,14 +200,26 @@ class AccountState(AppState):
         market_address = notification_state.account_market_state[8]
         market_chain = notification_state.account_market_state[9]
         has_price_crossed_threshold = False
-        form_data.update(
-            {
-                "market_name": market_name,
-                "market_chain": market_chain,
-                "has_price_crossed_threshold": has_price_crossed_threshold,
-            }
-        )
-        console.log(f"\nUpdated form data: {form_data}")
+
+        app_state = await self.get_state(AppState)
+        if app_state.protocol == "dfm":
+            users = dfm_users
+            form_data.update(
+                {
+                    "market_name": market_name,
+                    "market_chain": market_chain,
+                    "has_price_crossed_threshold": has_price_crossed_threshold,
+                }
+            )
+        elif app_state.protocol == "curve":
+            users = curve_users
+            form_data.update(
+                {
+                    "controller_name": market_name,
+                    "controller_chain": market_chain,
+                    "has_price_crossed_threshold": has_price_crossed_threshold,
+                }
+            )
 
         query_filter = {"tg_id": self.current_user_tg_id}
         user = users.find_one(query_filter)
@@ -173,7 +240,14 @@ class NotificationState(AppState):
     current_threshold_price: float
     threshold_price_set: bool = False
 
-    def handle_managing_notification(self, account_market_state: list):
+    async def handle_managing_notification(self, account_market_state: list):
+        global dfm_users, curve_users
+        app_state = await self.get_state(AppState)
+        if app_state.protocol == "dfm":
+            users = dfm_users
+        elif app_state.protocol == "curve":
+            users = curve_users
+
         self.account_market_state = account_market_state
         user = users.find_one({"tg_id": self.current_user_tg_id})
         notification_configs = user.get("notification_configs")
@@ -203,7 +277,7 @@ class NotificationState(AppState):
 def show_market(account_market_state: list[str | int | float]):
     return rx.table.row(
         rx.table.cell(account_market_state[0]),  # Market name
-        rx.table.cell(account_market_state[1]),  # account debt
+        rx.table.cell(f"${account_market_state[1]}"),  # account debt
         rx.table.cell(account_market_state[2]),  # amm_coll_balance
         rx.table.cell(account_market_state[3]),  # amm_stable_balance
         rx.table.cell(account_market_state[4]),  # health
@@ -212,63 +286,75 @@ def show_market(account_market_state: list[str | int | float]):
         ),  # conversion range
         rx.table.cell(
             rx.cond(
+                # If user is logged in
                 AppState.user_logged_in,
-                rx.popover.root(
-                    rx.popover.trigger(
-                        rx.button(
-                            "Manage",
-                            on_click=NotificationState.handle_managing_notification(
-                                account_market_state
+                rx.cond(
+                    # and if account is bound
+                    AccountState.account_bound,
+                    rx.popover.root(
+                        rx.popover.trigger(
+                            rx.button(
+                                "Manage",
+                                on_click=NotificationState.handle_managing_notification(
+                                    account_market_state
+                                ),
                             ),
                         ),
-                    ),
-                    rx.popover.content(
-                        rx.flex(
-                            rx.callout(
-                                f"Conversion to $Money will begin when {account_market_state[0]} drops below ${account_market_state[6]}",
-                                icon="info",
-                                size="1",
-                            ),
+                        rx.popover.content(
                             rx.flex(
-                                rx.text(
-                                    f"Notify me when {account_market_state[0]} price is below: "
+                                rx.callout(
+                                    f"Conversion to stablecoins will begin when {account_market_state[0]} drops below ${account_market_state[6]}",
+                                    icon="info",
+                                    size="1",
                                 ),
-                                rx.form(
-                                    rx.hstack(
-                                        rx.input(
-                                            rx.input.slot(
-                                                rx.icon("dollar-sign"), padding_left="0"
-                                            ),
-                                            placeholder="1234.56",
-                                            name="threshold_price",
-                                            type="number",
-                                        ),
-                                        rx.button("Confirm", type="submit"),
-                                    ),
-                                    on_submit=AccountState.handle_set_notification,
-                                ),
-                                rx.spacer(),
-                                rx.cond(
-                                    NotificationState.threshold_price_set,
+                                rx.flex(
                                     rx.text(
-                                        "Current notification price: ",
-                                        rx.badge(
-                                            f"${NotificationState.current_threshold_price}",
-                                            color_scheme="green",
+                                        f"Notify me when {account_market_state[0]} price is below: "
+                                    ),
+                                    rx.form(
+                                        rx.hstack(
+                                            rx.input(
+                                                rx.input.slot(
+                                                    rx.icon("dollar-sign"), padding_left="0"
+                                                ),
+                                                placeholder="1234.56",
+                                                name="threshold_price",
+                                                type="number",
+                                            ),
+                                            rx.button("Confirm", type="submit"),
+                                        ),
+                                        on_submit=AccountState.handle_set_notification,
+                                    ),
+                                    rx.spacer(),
+                                    rx.cond(
+                                        NotificationState.threshold_price_set,
+                                        rx.text(
+                                            "Current notification price: ",
+                                            rx.badge(
+                                                f"${NotificationState.current_threshold_price}",
+                                                color_scheme="green",
+                                            ),
                                         ),
                                     ),
+                                    direction="column",
+                                    spacing="2",
                                 ),
                                 direction="column",
                                 spacing="2",
                             ),
-                            direction="column",
-                            spacing="2",
+                            on_close_auto_focus=NotificationState.reset_account_market_state,
+                            on_escape_key_down=NotificationState.reset_account_market_state,
+                            on_pointer_down_outside=NotificationState.reset_account_market_state,
+                            on_focus_outside=NotificationState.reset_account_market_state,
+                            on_interact_outside=NotificationState.reset_account_market_state,
                         ),
-                        on_close_auto_focus=NotificationState.reset_account_market_state,
-                        on_escape_key_down=NotificationState.reset_account_market_state,
-                        on_pointer_down_outside=NotificationState.reset_account_market_state,
-                        on_focus_outside=NotificationState.reset_account_market_state,
-                        on_interact_outside=NotificationState.reset_account_market_state,
+                    ),
+                    rx.tooltip(
+                        rx.button(
+                            "Manage",
+                            disabled=True,
+                        ),
+                        content="Enter your address in the search bar, then click 'Get notifications...'",
                     ),
                 ),
                 rx.tooltip(
@@ -292,7 +378,7 @@ def create_table(account_states: list[list]) -> rx.Component:
                     rx.table.column_header_cell("COLLATERAL"),
                     rx.table.column_header_cell("DEBT"),
                     rx.table.column_header_cell("COLLATERAL AMOUNT"),
-                    rx.table.column_header_cell("$MONEY AMOUNT"),
+                    rx.table.column_header_cell("STABLECOIN AMOUNT (CONVERTED)"),
                     rx.table.column_header_cell("HEALTH"),
                     rx.table.column_header_cell("CONVERSION RANGE"),
                     rx.table.column_header_cell("NOTIFICATION"),
@@ -395,32 +481,96 @@ def navbar() -> rx.Component:
 
     return rx.el.nav(
         rx.hstack(
-            # The logo.
             rx.flex(
-                rx.tablet_and_desktop(
-                    rx.image(src="/llama_rest_logo.jpg", width="6em"),
-                ),
-                rx.mobile_only(
-                    rx.image(src="/llama_rest_logo_small.jpg", width="2em"),
-                ),
-                rx.tablet_and_desktop(
-                    rx.color_mode_cond(
-                        light=rx.image(src="/Defi.Money.Logo.Black.png", width="10em"),
-                        dark=rx.image(src="/Defi.Money.Logo.Sand.png", width="10em"),
+                # The logo.
+                rx.flex(
+                    rx.tablet_and_desktop(
+                        rx.image(src="/llama_rest_logo.jpg", width="6em"),
+                    ),
+                    rx.mobile_only(
+                        rx.image(src="/llama_rest_logo_small.jpg", width="2em"),
                     ),
                 ),
-                rx.mobile_only(
-                    rx.color_mode_cond(
-                        light=rx.image(src="/$GM.Logomark.Black.png", width="2em"),
-                        dark=rx.image(src="/$GM.Logomark.Sand.png", width="2em"),
+                # Protocol selection
+                rx.menu.root(
+                    rx.cond(
+                        # If protocol is selected
+                        AppState.is_protocol_selected,
+                        rx.cond(
+                            # and if protocol is defimoney
+                            AppState.is_protocol_dfm,
+                            # DFM logo
+                            rx.menu.trigger(
+                                rx.flex(
+                                    rx.flex(
+                                        rx.color_mode_cond(
+                                            light=rx.image(src="/$GM.Logomark.Black.png", width="1.5em"),
+                                            dark=rx.image(src="/$GM.Logomark.Sand.png", width="1.5em"),
+                                        ),
+                                        rx.text("DEFI.MONEY"),
+                                        spacing="2",
+                                        align="center"
+                                    ),
+                                    # on_click=AppState.handle_select_protocol,
+                                    rx.icon(tag="chevron-down", size=20),
+                                    spacing="1",
+                                    align="center",
+                                ),
+                                _hover={"cursor": "pointer"},
+                            ),
+                            rx.menu.trigger(
+                                rx.flex(
+                                    rx.flex(
+                                        rx.image(src="/curve_logo.png", width="1.5em"),
+                                        rx.text("Curve"),
+                                        spacing="2",
+                                        align="center",
+                                    ),
+                                    # on_click=AppState.handle_select_protocol,
+                                    rx.icon(tag="chevron-down", size=20),
+                                    spacing="1",
+                                    align="center",
+                                ),
+                                _hover={"cursor": "pointer"},
+                            )
+                        ),
+                        rx.menu.trigger(
+                            rx.flex(
+                                rx.text("Select App"),
+                                rx.icon(tag="chevron-down", size=20),
+                                spacing="1",
+                                align="center",
+                            ),
+                            _hover={"cursor": "pointer"},
+                        ),
                     ),
+                    rx.menu.content(
+                        rx.menu.item(
+                            rx.flex(
+                                rx.color_mode_cond(
+                                    light=rx.image(src="/$GM.Logomark.Black.png", width="2em"),
+                                    dark=rx.image(src="/$GM.Logomark.Sand.png", width="2em"),
+                                ),
+                                rx.text("DEFI.MONEY"),
+                                spacing="2",
+                                align="center",
+                            ),
+                            on_select=AppState.handle_select_protocol('dfm'),
+                            margin_bottom="0.25em"
+                        ),
+                        rx.menu.item(
+                            rx.flex(
+                                rx.image(src="/curve_logo.png", width="2em"),
+                                rx.text("Curve"),
+                                spacing="2",
+                                align="center",
+                            ),
+                            on_select=AppState.handle_select_protocol('curve'),
+                            margin_top="0.25em"
+                        ),
+                    )
                 ),
-                spacing=rx.breakpoints(
-                    initial="3",
-                    sm="5",
-                    md="7",
-                    lg="7",
-                ),
+                spacing="2em",
                 align="center",
             ),
             rx.spacer(),
@@ -442,13 +592,19 @@ def navbar() -> rx.Component:
             ),
             rx.flex(
                 rx.cond(
+                    # If not logged in
                     ~AppState.user_logged_in,
-                    # Telegram login button
-                    telegram_component(
-                        botName=BOT_NAME,
-                        dataAuthUrl=DATA_AUTH_URL,
-                        buttonSize="medium",
+                    rx.cond(
+                        # and if protocol is selected
+                        AppState.is_protocol_selected,
+                        # Telegram login button
+                        telegram_component(
+                            botName=BOT_NAME,
+                            dataAuthUrl=DATA_AUTH_URL,
+                            buttonSize="medium",
+                        ),
                     ),
+                    # else if logged in
                     # logout button
                     rx.button(
                         rx.icon(tag="log-out"),
@@ -511,14 +667,13 @@ def index() -> rx.Component:
         navbar(),
         delete_account_alert(),
         rx.flex(
-            # rx.spacer(),
             rx.cond(
                 AppState.user_logged_in,
                 rx.heading(f"Welcome, {AppState.current_user_first_name}", size="5"),
             ),
             rx.card(
                 rx.text.strong(
-                    "Monitor any defi.money positions. Sign in to receive Telegram notifications."
+                    "Monitor any loan positions. Sign in to receive Telegram notifications."
                 ),
                 rx.text(rx.text.strong("1. "), "Sign in with Telegram."),
                 rx.text(rx.text.strong("2. "), "Paste in your wallet address."),
@@ -535,112 +690,145 @@ def index() -> rx.Component:
                 spacing="2",
                 width="100%",
             ),
-            rx.vstack(
-                rx.cond(
-                    ~AccountState.account_bound,
-                    rx.flex(
-                        # Wallet address input
-                        rx.debounce_input(
-                            rx.input(
-                                rx.cond(
-                                    # If account successfully queried
-                                    QueryState.account_queried,
-                                    # Circle check icon
-                                    rx.input.slot(
-                                        rx.icon("circle-check", color="green"),
-                                        padding_left="2",
-                                    ),
-                                    rx.cond(
-                                        # If still querying
-                                        QueryState.loading,
-                                        # Show spinner
-                                        rx.input.slot(
-                                            rx.spinner(loading=True), padding_left="2"
-                                        ),
-                                        # Else show search icon
-                                        rx.input.slot(
-                                            rx.icon("search"), padding_left="2"
-                                        ),
-                                    ),
-                                ),
-                                on_change=lambda e: QueryState.handle_get_market_states_for_account(
-                                    e
-                                ),
-                                placeholder="Your wallet address here...",
-                                value=QueryState.current_address,
-                                size="3",
-                                width="100%",
-                                radius="large",
-                                variant="surface",
-                            ),
-                            debounce_timeout=700,
-                        ),
-                        # Input validation text
-                        rx.cond(
-                            QueryState.is_input_error,
-                            rx.text(
-                                QueryState.input_validation_text, color="red", size="1"
-                            ),
-                        ),
-                        justify="between",
-                        align="center",
-                        width="100%",
-                        spacing="3",
-                    ),
-                ),
-                rx.flex(
+            rx.cond(
+                # If protocol is selected
+                AppState.is_protocol_selected,
+                # Render search bar and bind address button
+                rx.vstack(
                     rx.cond(
-                        # If account is not bound,
                         ~AccountState.account_bound,
-                        rx.cond(
-                            # If account is correctly queried, data loaded
-                            QueryState.account_queried,
-                            rx.cond(
-                                # and if user is logged in, show the enabled button
-                                AppState.user_logged_in,
-                                # Get notifications for this address button
-                                rx.button(
-                                    "Get notifications for this address",
-                                    on_click=AccountState.handle_bind_address,
+                        rx.flex(
+                            # Wallet address input
+                            rx.debounce_input(
+                                rx.input(
+                                    rx.cond(
+                                        # If account successfully queried
+                                        QueryState.account_queried,
+                                        # Circle check icon
+                                        rx.input.slot(
+                                            rx.icon("circle-check", color="green"),
+                                            padding_left="2",
+                                        ),
+                                        rx.cond(
+                                            # If still querying
+                                            QueryState.loading,
+                                            # Show spinner
+                                            rx.input.slot(
+                                                rx.spinner(loading=True), padding_left="2"
+                                            ),
+                                            # Else show search icon
+                                            rx.input.slot(
+                                                rx.icon("search"), padding_left="2"
+                                            ),
+                                        ),
+                                    ),
+                                    on_change=lambda e: QueryState.handle_get_market_states_for_account(
+                                        e
+                                    ),
+                                    placeholder="Your wallet address here...",
+                                    value=QueryState.current_address,
+                                    size="3",
+                                    width="100%",
+                                    radius="large",
+                                    variant="surface",
                                 ),
-                                # else if user is not logged in, disable the button and show tooltip
-                                rx.tooltip(
+                                debounce_timeout=700,
+                            ),
+                            # Input validation text
+                            rx.cond(
+                                QueryState.is_input_error,
+                                rx.text(
+                                    QueryState.input_validation_text, color="red", size="1"
+                                ),
+                            ),
+                            justify="between",
+                            align="center",
+                            width="100%",
+                            spacing="3",
+                        ),
+                    ),
+                    rx.flex(
+                        rx.cond(
+                            # If account is not bound,
+                            ~AccountState.account_bound,
+                            rx.cond(
+                                # If account is correctly queried, data loaded
+                                QueryState.account_queried,
+                                rx.cond(
+                                    # and if user is logged in, show the enabled button
+                                    AppState.user_logged_in,
+                                    # Get notifications for this address button
                                     rx.button(
                                         "Get notifications for this address",
-                                        disabled=True,
+                                        on_click=AccountState.handle_bind_address,
                                     ),
-                                    content="You need to be logged in to receive notification.",
+                                    # else if user is not logged in, disable the button and show tooltip
+                                    rx.tooltip(
+                                        rx.button(
+                                            "Get notifications for this address",
+                                            disabled=True,
+                                        ),
+                                        content="You need to be logged in to receive notification.",
+                                    ),
                                 ),
                             ),
                         ),
+                        spacing="2",
+                        align="left",
+                        width="100%",
                     ),
-                    spacing="2",
-                    align="left",
                     width="100%",
                 ),
-                width="100%",
             ),
-            rx.flex(
-                rx.heading("Arbitrum", size="3", color_scheme="violet"),
-                rx.scroll_area(
-                    create_table(QueryState.arbitrum_account_states),
-                    type="auto",
-                    scrollbars="horizontal",
-                    style={"width": "100%"},
+            rx.cond(
+                # If selected protocol is defimoney
+                AppState.is_protocol_dfm,
+                # Render defimoney tables
+                rx.flex(
+                    rx.box(
+                        rx.heading("Arbitrum", size="3", color_scheme="violet"),
+                        rx.scroll_area(
+                            create_table(QueryState.arbitrum_account_states),
+                            type="auto",
+                            scrollbars="horizontal",
+                            style={"width": "100%"},
+                            margin_y="0.5em"
+                        ),
+                    ),
+                    rx.box(
+                        rx.heading("Optimism", size="3", color_scheme="ruby"),
+                        rx.scroll_area(
+                            create_table(QueryState.optimism_account_states),
+                            type="auto",
+                            scrollbars="horizontal",
+                            style={"width": "100%"},
+                            margin_y="0.5em"
+                        ),
+                    ),
+                    spacing="5",
+                    direction="column",
+                    
                 ),
-                direction="column",
-                spacing="2",
             ),
-            rx.flex(
-                rx.heading("Optimism", size="3", color_scheme="ruby"),
-                rx.scroll_area(
-                    create_table(QueryState.optimism_account_states),
-                    type="auto",
-                    scrollbars="horizontal",
-                    style={"width": "100%"},
+            rx.cond(
+                # If selected protocol is curve
+                AppState.is_protocol_curve,
+                # Render defimoney tables
+                rx.flex(
+                    rx.box(
+                        # rx.heading("Arbitrum", size="3", color_scheme="violet"),
+                        rx.scroll_area(
+                            create_table(QueryState.mainnet_account_states),
+                            type="auto",
+                            scrollbars="horizontal",
+                            style={"width": "100%"},
+                            margin_y="0.5em"
+                        ),
+                    ),
+                    spacing="5",
+                    direction="column",
+                    
                 ),
-                direction="column",
-                spacing="2",
             ),
             footer(),
             spacing="5",

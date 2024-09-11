@@ -8,7 +8,7 @@ from . import styles
 
 import reflex as rx
 
-from .backend.polling import start_polling_tasks
+from .backend import dfm_polling, curve_polling
 
 # Create the app.
 app = rx.App(
@@ -21,4 +21,5 @@ app = rx.App(
         accent_color="violet"
     )
 )
-app.register_lifespan_task(start_polling_tasks)
+app.register_lifespan_task(dfm_polling.start_polling_tasks)
+app.register_lifespan_task(curve_polling.start_polling_tasks)
